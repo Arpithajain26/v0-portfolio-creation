@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume - Arpitha Jain</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">&lt; Arpitha Jain /&gt;</a>
+            </div>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="resume.html">Resume</a></li>
+                <li><a href="biodata.html">Bio-data</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Resume Content -->
+    <section class="resume-section">
+        <div class="container">
+            <div class="resume-header">
+                <h1>&lt; Arpitha Jain C B /&gt;</h1>
+                <p>8792008746 | arpithaammujain39@gmail.com</p>
+                <p><a href="https://www.linkedin.com/in/arpitha-jain-c-b-475438290" target="_blank">LinkedIn</a> | <a href="https://github.com/Arpithajain26" target="_blank">GitHub</a></p>
+            </div>
+
+            <div class="resume-content">
+                <!-- Summary -->
+                <section class="resume-block">
+                    <h2>Professional Summary</h2>
+                    <p>Passionate AI/ML engineer with a strong background in deep learning, computer vision, and natural language processing. Skilled in Python, Java, and C. Excellent problem-solving skills and interested in web development.</p>
+                </section>
+
+                <!-- Technical Skills -->
+                <section class="resume-block">
+                    <h2>Technical Skills</h2>
+                    <div class="skills-list">
+                        <div class="skill-row">
+                            <strong>Programming Languages:</strong> Python, C, Java, SQL, MATLAB
+                        </div>
+                        <div class="skill-row">
+                            <strong>Libraries & Tools:</strong> NumPy, Pandas, Scikit-learn, Git
+                        </div>
+                        <div class="skill-row">
+                            <strong>Tools & Environments:</strong> VS Code, Jupyter Notebook, GitHub, Google Colab
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Projects -->
+                <section class="resume-block">
+                    <h2>Projects</h2>
+                    <div class="project-item">
+                        <h3>E-Authentication System <span class="date">Aug 2024 – Jan 2025</span></h3>
+                        <p class="project-meta">Web Development Project • HTML, CSS, JS</p>
+                        <ul>
+                            <li>Developed an E-Authentication system based on OTP.</li>
+                            <li>Worked on OTP validation using the user's phone number.</li>
+                            <li>Used Excel for storing user data.</li>
+                        </ul>
+                    </div>
+                    <div class="project-item">
+                        <h3>AI-powered Portfolio Generator <span class="date">Ongoing</span></h3>
+                        <p class="project-meta">Natural Language Processing • Python, HTML, CSS, JS</p>
+                        <ul>
+                            <li>Built an AI-powered portfolio generator which generates a portfolio based on user-provided information.</li>
+                            <li>User provides links such as LinkedIn, LeetCode, GitHub, and Medium.</li>
+                            <li>Generated portfolio is also stored in PDF format.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Achievements -->
+                <section class="resume-block">
+                    <h2>Achievements & Certifications</h2>
+                    <ul>
+                        <li>Solved 250+ questions on LeetCode (Feb 2025 – Present)</li>
+                        <li>Web Development Course from Udemy (Aug 2025 – Present)</li>
+                        <li>Python for Data Science from NPTEL (Jul 2025 – Present)</li>
+                        <li>Contributor at GirlScript Summer of Code 2025</li>
+                        <li>Certification from TCS</li>
+                        <li>Certification from Simplilearn on Web Development</li>
+                    </ul>
+                </section>
+
+                <!-- Education -->
+                <section class="resume-block">
+                    <h2>Education</h2>
+                    <div class="education-item">
+                        <h3>B.E. in Computer Science and Engineering <span class="date">Expected 2027</span></h3>
+                        <p>Visvesvaraya Technological University</p>
+                        <p>SDMIT College, Dharmasthala, Dakshina Kannada</p>
+                        <p class="gpa"><strong>CGPA: 9.6 / 10</strong></p>
+                    </div>
+                </section>
+            </div>
+
+            <div class="resume-actions">
+                <button onclick="downloadResume()" class="btn btn-primary">Download Resume (PDF)</button>
+                <button onclick="printResume()" class="btn btn-secondary">Print Resume</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Arpitha Jain C B. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
