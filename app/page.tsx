@@ -51,8 +51,17 @@ export default function Portfolio() {
         "Built an AI-powered portfolio generator which generates a portfolio based on user-provided information. User provides links such as LinkedIn, LeetCode, GitHub, and Medium. Generated portfolio is also stored in PDF format.",
       image: "/modern-ecommerce-interface.png",
       technologies: ["Python", "HTML", "CSS", "JavaScript", "NLP"],
-      liveUrl: "https://arpithajain26.github.io/AI-powered-portfolio-generator/",
+      liveUrl: null,
       githubUrl: "https://github.com/Arpithajain26/AI-powered-portfolio-generator",
+    },
+    {
+      title: "Sahayya Portal - Digital Complaint Registration",
+      description:
+        "A digital platform designed for complaint registration and management. Streamlines the process of lodging, tracking, and resolving complaints with an intuitive user interface and efficient backend system.",
+      image: "/task-management-dashboard.png",
+      technologies: ["React", "Node.js", "MongoDB", "Express", "Tailwind CSS"],
+      liveUrl: "https://sahayya-portal-tlgp.vercel.app/",
+      githubUrl: "https://github.com/Arpithajain26/sahayya-portal.git",
     },
   ]
 
@@ -334,12 +343,14 @@ export default function Portfolio() {
                     className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-4">
-                    <Button size="sm" variant="secondary" asChild className="bg-cyan-500 hover:bg-cyan-600 text-white">
-                      <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                        <ExternalLink size={16} className="mr-2" />
-                        Live Demo
-                      </a>
-                    </Button>
+                    {project.liveUrl && (
+                      <Button size="sm" variant="secondary" asChild className="bg-cyan-500 hover:bg-cyan-600 text-white">
+                        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                          <ExternalLink size={16} className="mr-2" />
+                          Live Demo
+                        </a>
+                      </Button>
+                    )}
                     <Button
                       size="sm"
                       variant="secondary"
