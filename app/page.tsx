@@ -8,7 +8,6 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Github, Linkedin, Mail, ExternalLink, Menu, X, ChevronDown, Code, Instagram } from "lucide-react"
 import Link from "next/link"
-import jsPDF from "jspdf"
 
 export default function Portfolio() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -512,82 +511,13 @@ export default function Portfolio() {
                 size="lg"
                 className="bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg shadow-cyan-500/25"
                 onClick={() => {
-                  // Create resume content and generate PDF
-                  const resumeContent = `
-ARPITHA JAIN C B
-8792008746 | arpithaammujain39@gmail.com | linkedin.com/in/arpitha-jain-c-b-475438290 | github.com/Arpithajain26
-
-SUMMARY
-Passionate AI/ML engineer with a strong background in deep learning, computer vision, and natural language processing.
-Skilled in Python, Java, and C. Excellent problem-solving skills and interested in web development.
-
-TECHNICAL SKILLS
-Programming Languages: Python, C, Java, SQL, MATLAB
-Libraries & Tools: NumPy, Pandas, Scikit-learn, Git
-Tools & Environments: VS Code, Jupyter Notebook, GitHub, Google Colab
-
-PROJECTS
-E-Authentication System                                                                Aug 2024 – Jan 2025
-Web Development Project • HTML, CSS, JS
-• Developed an E-Authentication system based on OTP.
-• Worked on OTP validation using the user's phone number.
-• Used Excel for storing user data.
-
-AI-powered Portfolio Generator                                                         Ongoing
-Natural Language Processing • Python, HTML, CSS, JS
-• Built an AI-powered portfolio generator which generates a portfolio based on user-provided information.
-• User provides links such as LinkedIn, LeetCode, GitHub, and Medium.
-• Generated portfolio is also stored in PDF format.
-
-ACHIEVEMENTS
-250+ Questions on LeetCode                                                            Feb 2025 – Present
-Python
-• Solved daily DSA problems in Python.
-
-Web Development Course from Udemy                                                     Aug 2025 – Present
-HTML, CSS, JS, MongoDB, React.js
-• Ongoing web development course (85.9 hours).
-
-Python for Data Science from NPTEL                                                   Jul 2025 – Present
-Python
-• Ongoing 4-credit course on Python for Data Science.
-
-Contributor at GirlScript Summer of Code 2025                                        Aug 2025 – Present
-sktime
-• Contributing to open-source projects.
-• Opened pull requests recently.
-• Participated in project pitch competition conducted in collaboration with IIT Bombay.
-
-EDUCATION
-Visvesvaraya Technological University                                                Expected 2027
-B.E. in Computer Science and Engineering
-SDMIT College, Dharmasthala, Dakshina Kannada
-CGPA: 9.6 / 10
-
-CERTIFICATIONS
-• Certification from TCS.
-• Certification from Simplilearn on Web Development.
-`
-
-                  // Generate PDF using jsPDF
-                  const pdf = new jsPDF()
-                  const lines = resumeContent.split('\n')
-                  let yPosition = 10
-                  const pageHeight = pdf.internal.pageSize.getHeight()
-                  const margin = 10
-                  const lineHeight = 5
-                  const maxWidth = pdf.internal.pageSize.getWidth() - 2 * margin
-
-                  lines.forEach((line) => {
-                    if (yPosition > pageHeight - margin) {
-                      pdf.addPage()
-                      yPosition = margin
-                    }
-                    pdf.text(line, margin, yPosition, { maxWidth: maxWidth })
-                    yPosition += lineHeight
-                  })
-
-                  pdf.save("Arpitha_Jain_Resume.pdf")
+                  // Download original resume PDF
+                  const link = document.createElement("a")
+                  link.href = "/Arpitha_Jain_Resume.pdf"
+                  link.download = "Arpitha_Jain_Resume.pdf"
+                  document.body.appendChild(link)
+                  link.click()
+                  document.body.removeChild(link)
                 }}
               >
                 Download Resume
