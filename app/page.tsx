@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Github, Linkedin, Mail, ExternalLink, Menu, X, ChevronDown, Code, Instagram } from "lucide-react"
 import Link from "next/link"
+import jsPDF from "jspdf"
 
 export default function Portfolio() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -511,7 +512,7 @@ export default function Portfolio() {
                 size="lg"
                 className="bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg shadow-cyan-500/25"
                 onClick={() => {
-                  // Create resume content as downloadable file
+                  // Create resume content and generate PDF
                   const resumeContent = `
 ARPITHA JAIN C B
 8792008746 | arpithaammujain39@gmail.com | linkedin.com/in/arpitha-jain-c-b-475438290 | github.com/Arpithajain26
@@ -568,15 +569,25 @@ CERTIFICATIONS
 • Certification from Simplilearn on Web Development.
 `
 
-                  const blob = new Blob([resumeContent], { type: "text/plain" })
-                  const url = window.URL.createObjectURL(blob)
-                  const a = document.createElement("a")
-                  a.href = url
-                  a.download = "Arpitha_Jain_Resume.txt"
-                  document.body.appendChild(a)
-                  a.click()
-                  document.body.removeChild(a)
-                  window.URL.revokeObjectURL(url)
+                  // Generate PDF using jsPDF
+                  const pdf = new jsPDF()
+                  const lines = resumeContent.split('\n')
+                  let yPosition = 10
+                  const pageHeight = pdf.internal.pageSize.getHeight()
+                  const margin = 10
+                  const lineHeight = 5
+                  const maxWidth = pdf.internal.pageSize.getWidth() - 2 * margin
+
+                  lines.forEach((line) => {
+                    if (yPosition > pageHeight - margin) {
+                      pdf.addPage()
+                      yPosition = margin
+                    }
+                    pdf.text(line, margin, yPosition, { maxWidth: maxWidth })
+                    yPosition += lineHeight
+                  })
+
+                  pdf.save("Arpitha_Jain_Resume.pdf")
                 }}
               >
                 Download Resume
