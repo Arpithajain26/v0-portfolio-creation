@@ -15,7 +15,7 @@ export default function Portfolio() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["home", "about", "projects", "skills", "achievements", "extracurricular", "resume", "contact"]
+      const sections = ["home", "about", "projects", "skills", "achievements", "extracurricular", "results", "resume", "contact"]
       const scrollPosition = window.scrollY + 100
 
       for (const section of sections) {
@@ -135,7 +135,7 @@ export default function Portfolio() {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex space-x-8">
-              {["home", "about", "projects", "skills", "achievements", "extracurricular", "resume", "contact"].map(
+              {["home", "about", "projects", "skills", "achievements", "extracurricular", "results", "resume", "contact"].map(
                 (item) => (
                   <button
                     key={item}
@@ -167,7 +167,7 @@ export default function Portfolio() {
           {/* Mobile Navigation Menu */}
           {isMenuOpen && (
             <div className="md:hidden py-4 border-t border-gray-700 animate-fade-in">
-              {["home", "about", "projects", "skills", "achievements", "extracurricular", "resume", "contact"].map(
+              {["home", "about", "projects", "skills", "achievements", "extracurricular", "results", "resume", "contact"].map(
                 (item) => (
                   <button
                     key={item}
@@ -532,6 +532,61 @@ export default function Portfolio() {
               </Button>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Results Section */}
+      <section id="results" className="py-20 bg-black">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="font-playfair text-3xl md:text-4xl font-bold text-white mb-4 animate-slide-up">
+              <span className="text-purple-400">Academic Results</span>
+            </h2>
+            <p className="text-gray-300 animate-slide-up delay-100">View and download your semester results</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-8">
+            {[
+              { sem: 1, label: "1st Semester" },
+              { sem: 2, label: "2nd Semester" },
+              { sem: 3, label: "3rd Semester" },
+              { sem: 4, label: "4th Semester" },
+              { sem: 5, label: "5th Semester" },
+            ].map((semester) => (
+              <Button
+                key={semester.sem}
+                onClick={async () => {
+                  try {
+                    const response = await fetch(`/api/download-result?sem=${semester.sem}`)
+                    if (!response.ok) throw new Error("Failed to download result")
+                    const blob = await response.blob()
+                    const url = window.URL.createObjectURL(blob)
+                    const link = document.createElement("a")
+                    link.href = url
+                    link.download = `VTU_${semester.sem === 1 ? '1st' : semester.sem === 2 ? '2nd' : semester.sem === 3 ? '3rd' : semester.sem === 4 ? '4th' : '5th'}_result.pdf`
+                    document.body.appendChild(link)
+                    link.click()
+                    document.body.removeChild(link)
+                    window.URL.revokeObjectURL(url)
+                  } catch (error) {
+                    console.error("[v0] Result download error:", error)
+                  }
+                }}
+                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 px-4 rounded-lg transform hover:scale-105 transition-all duration-300 shadow-lg shadow-purple-500/25 animate-slide-up"
+              >
+                {semester.label}
+              </Button>
+            ))}
+          </div>
+
+          <Card className="bg-gray-800 border-purple-500/30 animate-slide-up delay-200">
+            <CardContent className="p-8">
+              <h3 className="text-xl font-bold text-purple-300 mb-4">📋 How to Download</h3>
+              <p className="text-gray-300 leading-relaxed">
+                Click on any semester button above to download your VTU exam results in PDF format. All results are officially from Visvesvaraya Technological University and contain your subject-wise marks, grades, and performance details.
+              </p>
+            </CardContent>
+          </Card>
         </div>
       </section>
 
