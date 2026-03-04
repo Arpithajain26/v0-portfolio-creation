@@ -512,8 +512,8 @@ export default function Portfolio() {
                 className="bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg shadow-cyan-500/25"
                 onClick={async () => {
                   try {
-                    const response = await fetch("/Arpitha_Jain_Resume.pdf")
-                    if (!response.ok) throw new Error("Failed to download")
+                    const response = await fetch("/api/download-resume")
+                    if (!response.ok) throw new Error("Failed to download resume")
                     const blob = await response.blob()
                     const url = window.URL.createObjectURL(blob)
                     const link = document.createElement("a")
@@ -524,7 +524,7 @@ export default function Portfolio() {
                     document.body.removeChild(link)
                     window.URL.revokeObjectURL(url)
                   } catch (error) {
-                    console.error("[v0] PDF download error:", error)
+                    console.error("[v0] Resume download error:", error)
                   }
                 }}
               >
