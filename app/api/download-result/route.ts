@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import fs from 'fs'
+import { promises as fs } from 'fs'
 import path from 'path'
 
 export async function GET(request: NextRequest) {
@@ -25,20 +25,18 @@ export async function GET(request: NextRequest) {
     const fileName = `VTU_${semesterNames[semester]}_result.pdf`
     const filePath = path.join(process.cwd(), 'public', fileName)
 
-    if (!fs.existsSync(filePath)) {
-      return NextResponse.json(
-        { error: 'Result file not found' },
-        { status: 404 }
-      )
-    }
-
-    const fileBuffer = fs.readFileSync(filePath)
+    // Read file asynchronously
+    const fileBuffer = await fs.readFile(filePath)
 
     return new NextResponse(fileBuffer, {
+      status: 200,
       headers: {
         'Content-Type': 'application/pdf',
         'Content-Disposition': `attachment; filename="${fileName}"`,
         'Content-Length': fileBuffer.length.toString(),
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        'Pragma': 'no-cache',
+        'Expires': '0',
       },
     })
   } catch (error) {

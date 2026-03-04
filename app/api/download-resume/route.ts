@@ -1,28 +1,24 @@
 import { NextRequest, NextResponse } from 'next/server'
-import fs from 'fs'
+import { promises as fs } from 'fs'
 import path from 'path'
 
 export async function GET(request: NextRequest) {
   try {
     const filePath = path.join(process.cwd(), 'public', 'Arpitha_Jain_Resume.pdf')
     
-    // Check if file exists
-    if (!fs.existsSync(filePath)) {
-      return NextResponse.json(
-        { error: 'Resume file not found' },
-        { status: 404 }
-      )
-    }
+    // Read the file asynchronously
+    const fileBuffer = await fs.readFile(filePath)
 
-    // Read the file
-    const fileBuffer = fs.readFileSync(filePath)
-
-    // Return the file with proper headers
+    // Return the file with proper headers for PDF download
     return new NextResponse(fileBuffer, {
+      status: 200,
       headers: {
         'Content-Type': 'application/pdf',
         'Content-Disposition': 'attachment; filename="Arpitha_Jain_Resume.pdf"',
         'Content-Length': fileBuffer.length.toString(),
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        'Pragma': 'no-cache',
+        'Expires': '0',
       },
     })
   } catch (error) {
