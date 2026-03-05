@@ -1,6 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { promises as fs } from 'fs'
-import path from 'path'
 
 export async function GET(request: NextRequest) {
   try {
@@ -14,6 +12,15 @@ export async function GET(request: NextRequest) {
       )
     }
 
+    // Map semester to blob URLs
+    const resultUrls: { [key: string]: string } = {
+      '1': 'https://blobs.vusercontent.net/blob/VTU_1stresult-PnsaQruqtg03Q5InMIDWI2e8YEuibP.pdf',
+      '2': 'https://blobs.vusercontent.net/blob/VTU_2nd_result-mSVTc9XOLtxQbG5p4h3UJ9a6lZF9WV.pdf',
+      '3': 'https://blobs.vusercontent.net/blob/VTU_3rd_resilt-urTyUWal9KM7CeJzduEnO4YhzbwlqA.pdf',
+      '4': 'https://blobs.vusercontent.net/blob/VTU_4th_result-OCfMYpbyvwkYIgK32yO9pXRi4GSL4X.pdf',
+      '5': 'https://blobs.vusercontent.net/blob/VTU_5th_resultdf-BpBN9CiHNHHlxNAd49VKh5xn2kAGk5.pdf',
+    }
+
     const semesterNames: { [key: string]: string } = {
       '1': '1st',
       '2': '2nd',
@@ -22,21 +29,26 @@ export async function GET(request: NextRequest) {
       '5': '5th',
     }
 
+    const resultUrl = resultUrls[semester]
     const fileName = `VTU_${semesterNames[semester]}_result.pdf`
-    const filePath = path.join(process.cwd(), 'public', fileName)
 
-    // Read file asynchronously
-    const fileBuffer = await fs.readFile(filePath)
+    // Fetch the PDF from the blob URL
+    const response = await fetch(resultUrl)
 
-    return new NextResponse(fileBuffer, {
+    if (!response.ok) {
+      throw new Error(`Failed to fetch result: ${response.statusText}`)
+    }
+
+    const buffer = await response.arrayBuffer()
+
+    return new NextResponse(Buffer.from(buffer), {
       status: 200,
       headers: {
         'Content-Type': 'application/pdf',
         'Content-Disposition': `attachment; filename="${fileName}"`,
-        'Content-Length': fileBuffer.length.toString(),
-        'Cache-Control': 'no-cache, no-store, must-revalidate',
-        'Pragma': 'no-cache',
-        'Expires': '0',
+        'Content-Length': buffer.byteLength.toString(),
+        'Cache-Control': 'public, max-age=31536000',
+        'Pragma': 'public',
       },
     })
   } catch (error) {

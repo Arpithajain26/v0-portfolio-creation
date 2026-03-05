@@ -1,24 +1,27 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { promises as fs } from 'fs'
-import path from 'path'
 
 export async function GET(request: NextRequest) {
   try {
-    const filePath = path.join(process.cwd(), 'public', 'Arpitha_Jain_Resume.pdf')
+    // Fetch the PDF from the blob URL (original source)
+    const resumeUrl = 'https://blobs.vusercontent.net/blob/resumeorigin-qTZ9lD0mDSMfgIx0bbht8TCPGE2N94.pdf'
     
-    // Read the file asynchronously
-    const fileBuffer = await fs.readFile(filePath)
+    const response = await fetch(resumeUrl)
+    
+    if (!response.ok) {
+      throw new Error(`Failed to fetch resume: ${response.statusText}`)
+    }
+
+    const buffer = await response.arrayBuffer()
 
     // Return the file with proper headers for PDF download
-    return new NextResponse(fileBuffer, {
+    return new NextResponse(Buffer.from(buffer), {
       status: 200,
       headers: {
         'Content-Type': 'application/pdf',
         'Content-Disposition': 'attachment; filename="Arpitha_Jain_Resume.pdf"',
-        'Content-Length': fileBuffer.length.toString(),
-        'Cache-Control': 'no-cache, no-store, must-revalidate',
-        'Pragma': 'no-cache',
-        'Expires': '0',
+        'Content-Length': buffer.byteLength.toString(),
+        'Cache-Control': 'public, max-age=31536000',
+        'Pragma': 'public',
       },
     })
   } catch (error) {
