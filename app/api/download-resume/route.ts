@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server'
 export async function GET(request: NextRequest) {
   try {
     // Fetch the PDF from the blob URL (original source)
-    const resumeUrl = 'https://blobs.vusercontent.net/blob/resumeorigin-qTZ9lD0mDSMfgIx0bbht8TCPGE2N94.pdf'
+    const resumeUrl = 'https://blobs.vusercontent.net/blob/resume_arpitha-NnEpzsF68SeMDoHEtMlQ6FWVe5H8xC.pdf'
     
     const response = await fetch(resumeUrl)
     
