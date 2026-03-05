@@ -63,6 +63,15 @@ export default function Portfolio() {
       liveUrl: "https://sahayya-portal-tlgp.vercel.app/",
       githubUrl: "https://github.com/Arpithajain26/sahayya-portal.git",
     },
+    {
+      title: "Speak Up Studio",
+      description:
+        "An interactive platform for speech and communication practice. Currently under development, featuring tools for users to improve their public speaking and communication skills through guided exercises and feedback.",
+      image: "/weather-analytics-dashboard-with-charts.png",
+      technologies: ["React", "Node.js", "Express", "MongoDB", "Web Audio API"],
+      liveUrl: null,
+      githubUrl: "https://github.com/Arpithajain26/speak-up-studio.git",
+    },
   ]
 
   const skills = [
@@ -99,6 +108,11 @@ export default function Portfolio() {
       title: "Open Source Contributor",
       description: "Contributor at GirlScript Summer of Code 2025",
       icon: "🌟",
+    },
+    {
+      title: "CodeCraft Event Coordinator",
+      description: "Coordinated CodeCraft event, organizing workshops and competitions for students",
+      icon: "📋",
     },
   ]
 
