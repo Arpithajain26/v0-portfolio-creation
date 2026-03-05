@@ -557,13 +557,20 @@ export default function Portfolio() {
                 key={semester.sem}
                 onClick={async () => {
                   try {
+                    const semesterNames: { [key: number]: string } = {
+                      1: '1st',
+                      2: '2nd',
+                      3: '3rd',
+                      4: '4th',
+                      5: '5th',
+                    }
                     const response = await fetch(`/api/download-result?sem=${semester.sem}`)
                     if (!response.ok) throw new Error("Failed to download result")
                     const blob = await response.blob()
                     const url = window.URL.createObjectURL(blob)
                     const link = document.createElement("a")
                     link.href = url
-                    link.download = `VTU_${semester.sem === 1 ? '1st' : semester.sem === 2 ? '2nd' : semester.sem === 3 ? '3rd' : semester.sem === 4 ? '4th' : '5th'}_result.pdf`
+                    link.download = `VTU_${semesterNames[semester.sem]}_result.pdf`
                     document.body.appendChild(link)
                     link.click()
                     document.body.removeChild(link)
