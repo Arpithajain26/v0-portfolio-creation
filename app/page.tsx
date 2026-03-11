@@ -15,7 +15,7 @@ export default function Portfolio() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["home", "about", "projects", "skills", "achievements", "extracurricular", "resume", "contact"]
+      const sections = ["home", "about", "projects", "skills", "achievements", "extracurricular", "results", "resume", "contact"]
       const scrollPosition = window.scrollY + 100
 
       for (const section of sections) {
@@ -51,8 +51,26 @@ export default function Portfolio() {
         "Built an AI-powered portfolio generator which generates a portfolio based on user-provided information. User provides links such as LinkedIn, LeetCode, GitHub, and Medium. Generated portfolio is also stored in PDF format.",
       image: "/modern-ecommerce-interface.png",
       technologies: ["Python", "HTML", "CSS", "JavaScript", "NLP"],
-      liveUrl: "https://arpithajain26.github.io/AI-powered-portfolio-generator/",
+      liveUrl: null,
       githubUrl: "https://github.com/Arpithajain26/AI-powered-portfolio-generator",
+    },
+    {
+      title: "Sahayya Portal - Digital Complaint Registration",
+      description:
+        "A digital platform designed for complaint registration and management. Streamlines the process of lodging, tracking, and resolving complaints with an intuitive user interface and efficient backend system.",
+      image: "/task-management-dashboard.png",
+      technologies: ["React", "Node.js", "MongoDB", "Express", "Tailwind CSS"],
+      liveUrl: "https://sahayya-portal-tlgp.vercel.app/",
+      githubUrl: "https://github.com/Arpithajain26/sahayya-portal.git",
+    },
+    {
+      title: "Speak Up Studio",
+      description:
+        "An interactive platform for speech and communication practice. Currently under development, featuring tools for users to improve their public speaking and communication skills through guided exercises and feedback.",
+      image: "/weather-analytics-dashboard-with-charts.png",
+      technologies: ["React", "Node.js", "Express", "MongoDB", "Web Audio API"],
+      liveUrl: null,
+      githubUrl: "https://github.com/Arpithajain26/speak-up-studio.git",
     },
   ]
 
@@ -91,6 +109,11 @@ export default function Portfolio() {
       description: "Contributor at GirlScript Summer of Code 2025",
       icon: "🌟",
     },
+    {
+      title: "CodeCraft Event Coordinator",
+      description: "Coordinated CodeCraft event, organizing workshops and competitions for students",
+      icon: "📋",
+    },
   ]
 
   const extracurriculars = [
@@ -126,7 +149,7 @@ export default function Portfolio() {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex space-x-8">
-              {["home", "about", "projects", "skills", "achievements", "extracurricular", "resume", "contact"].map(
+              {["home", "about", "projects", "skills", "achievements", "extracurricular", "results", "resume", "contact"].map(
                 (item) => (
                   <button
                     key={item}
@@ -158,7 +181,7 @@ export default function Portfolio() {
           {/* Mobile Navigation Menu */}
           {isMenuOpen && (
             <div className="md:hidden py-4 border-t border-gray-700 animate-fade-in">
-              {["home", "about", "projects", "skills", "achievements", "extracurricular", "resume", "contact"].map(
+              {["home", "about", "projects", "skills", "achievements", "extracurricular", "results", "resume", "contact"].map(
                 (item) => (
                   <button
                     key={item}
@@ -334,12 +357,14 @@ export default function Portfolio() {
                     className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-4">
-                    <Button size="sm" variant="secondary" asChild className="bg-cyan-500 hover:bg-cyan-600 text-white">
-                      <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                        <ExternalLink size={16} className="mr-2" />
-                        Live Demo
-                      </a>
-                    </Button>
+                    {project.liveUrl && (
+                      <Button size="sm" variant="secondary" asChild className="bg-cyan-500 hover:bg-cyan-600 text-white">
+                        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                          <ExternalLink size={16} className="mr-2" />
+                          Live Demo
+                        </a>
+                      </Button>
+                    )}
                     <Button
                       size="sm"
                       variant="secondary"
@@ -499,79 +524,90 @@ export default function Portfolio() {
               <Button
                 size="lg"
                 className="bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg shadow-cyan-500/25"
-                onClick={() => {
-                  // Create resume content as downloadable file
-                  const resumeContent = `
-ARPITHA JAIN C B
-8792008746 | arpithaammujain39@gmail.com | linkedin.com/in/arpitha-jain-c-b-475438290 | github.com/Arpithajain26
-
-SUMMARY
-Passionate AI/ML engineer with a strong background in deep learning, computer vision, and natural language processing.
-Skilled in Python, Java, and C. Excellent problem-solving skills and interested in web development.
-
-TECHNICAL SKILLS
-Programming Languages: Python, C, Java, SQL, MATLAB
-Libraries & Tools: NumPy, Pandas, Scikit-learn, Git
-Tools & Environments: VS Code, Jupyter Notebook, GitHub, Google Colab
-
-PROJECTS
-E-Authentication System                                                                Aug 2024 – Jan 2025
-Web Development Project • HTML, CSS, JS
-• Developed an E-Authentication system based on OTP.
-• Worked on OTP validation using the user's phone number.
-• Used Excel for storing user data.
-
-AI-powered Portfolio Generator                                                         Ongoing
-Natural Language Processing • Python, HTML, CSS, JS
-• Built an AI-powered portfolio generator which generates a portfolio based on user-provided information.
-• User provides links such as LinkedIn, LeetCode, GitHub, and Medium.
-• Generated portfolio is also stored in PDF format.
-
-ACHIEVEMENTS
-250+ Questions on LeetCode                                                            Feb 2025 – Present
-Python
-• Solved daily DSA problems in Python.
-
-Web Development Course from Udemy                                                     Aug 2025 – Present
-HTML, CSS, JS, MongoDB, React.js
-• Ongoing web development course (85.9 hours).
-
-Python for Data Science from NPTEL                                                   Jul 2025 – Present
-Python
-• Ongoing 4-credit course on Python for Data Science.
-
-Contributor at GirlScript Summer of Code 2025                                        Aug 2025 – Present
-sktime
-• Contributing to open-source projects.
-• Opened pull requests recently.
-• Participated in project pitch competition conducted in collaboration with IIT Bombay.
-
-EDUCATION
-Visvesvaraya Technological University                                                Expected 2027
-B.E. in Computer Science and Engineering
-SDMIT College, Dharmasthala, Dakshina Kannada
-CGPA: 9.6 / 10
-
-CERTIFICATIONS
-• Certification from TCS.
-• Certification from Simplilearn on Web Development.
-`
-
-                  const blob = new Blob([resumeContent], { type: "text/plain" })
-                  const url = window.URL.createObjectURL(blob)
-                  const a = document.createElement("a")
-                  a.href = url
-                  a.download = "Arpitha_Jain_Resume.txt"
-                  document.body.appendChild(a)
-                  a.click()
-                  document.body.removeChild(a)
-                  window.URL.revokeObjectURL(url)
+                onClick={async () => {
+                  try {
+                    const response = await fetch("/api/download-resume")
+                    if (!response.ok) throw new Error("Failed to download resume")
+                    const blob = await response.blob()
+                    const url = window.URL.createObjectURL(blob)
+                    const link = document.createElement("a")
+                    link.href = url
+                    link.download = "Arpitha_Jain_Resume.pdf"
+                    document.body.appendChild(link)
+                    link.click()
+                    document.body.removeChild(link)
+                    window.URL.revokeObjectURL(url)
+                  } catch (error) {
+                    console.error("[v0] Resume download error:", error)
+                  }
                 }}
               >
                 Download Resume
               </Button>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Results Section */}
+      <section id="results" className="py-20 bg-black">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="font-playfair text-3xl md:text-4xl font-bold text-white mb-4 animate-slide-up">
+              <span className="text-purple-400">Academic Results</span>
+            </h2>
+            <p className="text-gray-300 animate-slide-up delay-100">View and download your semester results</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-8">
+            {[
+              { sem: 1, label: "1st Semester" },
+              { sem: 2, label: "2nd Semester" },
+              { sem: 3, label: "3rd Semester" },
+              { sem: 4, label: "4th Semester" },
+              { sem: 5, label: "5th Semester" },
+            ].map((semester) => (
+              <Button
+                key={semester.sem}
+                onClick={async () => {
+                  try {
+                    const semesterNames: { [key: number]: string } = {
+                      1: '1st',
+                      2: '2nd',
+                      3: '3rd',
+                      4: '4th',
+                      5: '5th',
+                    }
+                    const response = await fetch(`/api/download-result?sem=${semester.sem}`)
+                    if (!response.ok) throw new Error("Failed to download result")
+                    const blob = await response.blob()
+                    const url = window.URL.createObjectURL(blob)
+                    const link = document.createElement("a")
+                    link.href = url
+                    link.download = `VTU_${semesterNames[semester.sem]}_result.pdf`
+                    document.body.appendChild(link)
+                    link.click()
+                    document.body.removeChild(link)
+                    window.URL.revokeObjectURL(url)
+                  } catch (error) {
+                    console.error("[v0] Result download error:", error)
+                  }
+                }}
+                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 px-4 rounded-lg transform hover:scale-105 transition-all duration-300 shadow-lg shadow-purple-500/25 animate-slide-up"
+              >
+                {semester.label}
+              </Button>
+            ))}
+          </div>
+
+          <Card className="bg-gray-800 border-purple-500/30 animate-slide-up delay-200">
+            <CardContent className="p-8">
+              <h3 className="text-xl font-bold text-purple-300 mb-4">📋 How to Download</h3>
+              <p className="text-gray-300 leading-relaxed">
+                Click on any semester button above to download your VTU exam results in PDF format. All results are officially from Visvesvaraya Technological University and contain your subject-wise marks, grades, and performance details.
+              </p>
+            </CardContent>
+          </Card>
         </div>
       </section>
 
