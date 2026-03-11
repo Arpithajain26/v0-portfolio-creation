@@ -30,7 +30,11 @@
     "@radix-ui/react-select": "2.1.4",
     "@radix-ui/react-separator": "1.1.1",
     "@radix-ui/react-slider": "1.2.2",
+<<<<<<< HEAD
     "@radix-ui/react-slot": "1.1.1",
+=======
+    "@radix-ui/react-slot": "latest",
+>>>>>>> 9894679fade300d8128eb1ed2e7751efa8347dc8
     "@radix-ui/react-switch": "1.1.2",
     "@radix-ui/react-tabs": "1.1.2",
     "@radix-ui/react-toast": "1.2.4",
@@ -46,10 +50,16 @@
     "embla-carousel-react": "8.5.1",
     "geist": "latest",
     "input-otp": "1.4.1",
+<<<<<<< HEAD
     "jspdf": "4.2.0",
     "lucide-react": "^0.454.0",
     "next": "14.2.35",
     "next-themes": "^0.4.6",
+=======
+    "lucide-react": "^0.454.0",
+    "next": "14.2.25",
+    "next-themes": "latest",
+>>>>>>> 9894679fade300d8128eb1ed2e7751efa8347dc8
     "react": "^19",
     "react-day-picker": "9.8.0",
     "react-dom": "^19",

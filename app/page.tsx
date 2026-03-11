@@ -15,7 +15,11 @@ export default function Portfolio() {
 
   useEffect(() => {
     const handleScroll = () => {
+<<<<<<< HEAD
       const sections = ["home", "about", "projects", "skills", "achievements", "extracurricular", "results", "resume", "contact"]
+=======
+      const sections = ["home", "about", "projects", "skills", "achievements", "extracurricular", "resume", "contact"]
+>>>>>>> 9894679fade300d8128eb1ed2e7751efa8347dc8
       const scrollPosition = window.scrollY + 100
 
       for (const section of sections) {
@@ -51,6 +55,7 @@ export default function Portfolio() {
         "Built an AI-powered portfolio generator which generates a portfolio based on user-provided information. User provides links such as LinkedIn, LeetCode, GitHub, and Medium. Generated portfolio is also stored in PDF format.",
       image: "/modern-ecommerce-interface.png",
       technologies: ["Python", "HTML", "CSS", "JavaScript", "NLP"],
+<<<<<<< HEAD
       liveUrl: null,
       githubUrl: "https://github.com/Arpithajain26/AI-powered-portfolio-generator",
     },
@@ -72,6 +77,11 @@ export default function Portfolio() {
       liveUrl: null,
       githubUrl: "https://github.com/Arpithajain26/speak-up-studio.git",
     },
+=======
+      liveUrl: "https://arpithajain26.github.io/AI-powered-portfolio-generator/",
+      githubUrl: "https://github.com/Arpithajain26/AI-powered-portfolio-generator",
+    },
+>>>>>>> 9894679fade300d8128eb1ed2e7751efa8347dc8
   ]
 
   const skills = [
@@ -109,11 +119,14 @@ export default function Portfolio() {
       description: "Contributor at GirlScript Summer of Code 2025",
       icon: "🌟",
     },
+<<<<<<< HEAD
     {
       title: "CodeCraft Event Coordinator",
       description: "Coordinated CodeCraft event, organizing workshops and competitions for students",
       icon: "📋",
     },
+=======
+>>>>>>> 9894679fade300d8128eb1ed2e7751efa8347dc8
   ]
 
   const extracurriculars = [
@@ -149,7 +162,11 @@ export default function Portfolio() {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex space-x-8">
+<<<<<<< HEAD
               {["home", "about", "projects", "skills", "achievements", "extracurricular", "results", "resume", "contact"].map(
+=======
+              {["home", "about", "projects", "skills", "achievements", "extracurricular", "resume", "contact"].map(
+>>>>>>> 9894679fade300d8128eb1ed2e7751efa8347dc8
                 (item) => (
                   <button
                     key={item}
@@ -181,7 +198,11 @@ export default function Portfolio() {
           {/* Mobile Navigation Menu */}
           {isMenuOpen && (
             <div className="md:hidden py-4 border-t border-gray-700 animate-fade-in">
+<<<<<<< HEAD
               {["home", "about", "projects", "skills", "achievements", "extracurricular", "results", "resume", "contact"].map(
+=======
+              {["home", "about", "projects", "skills", "achievements", "extracurricular", "resume", "contact"].map(
+>>>>>>> 9894679fade300d8128eb1ed2e7751efa8347dc8
                 (item) => (
                   <button
                     key={item}
@@ -357,6 +378,7 @@ export default function Portfolio() {
                     className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-4">
+<<<<<<< HEAD
                     {project.liveUrl && (
                       <Button size="sm" variant="secondary" asChild className="bg-cyan-500 hover:bg-cyan-600 text-white">
                         <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
@@ -365,6 +387,14 @@ export default function Portfolio() {
                         </a>
                       </Button>
                     )}
+=======
+                    <Button size="sm" variant="secondary" asChild className="bg-cyan-500 hover:bg-cyan-600 text-white">
+                      <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                        <ExternalLink size={16} className="mr-2" />
+                        Live Demo
+                      </a>
+                    </Button>
+>>>>>>> 9894679fade300d8128eb1ed2e7751efa8347dc8
                     <Button
                       size="sm"
                       variant="secondary"
@@ -524,6 +554,7 @@ export default function Portfolio() {
               <Button
                 size="lg"
                 className="bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg shadow-cyan-500/25"
+<<<<<<< HEAD
                 onClick={async () => {
                   try {
                     const response = await fetch("/api/download-resume")
@@ -540,6 +571,75 @@ export default function Portfolio() {
                   } catch (error) {
                     console.error("[v0] Resume download error:", error)
                   }
+=======
+                onClick={() => {
+                  // Create resume content as downloadable file
+                  const resumeContent = `
+ARPITHA JAIN C B
+8792008746 | arpithaammujain39@gmail.com | linkedin.com/in/arpitha-jain-c-b-475438290 | github.com/Arpithajain26
+
+SUMMARY
+Passionate AI/ML engineer with a strong background in deep learning, computer vision, and natural language processing.
+Skilled in Python, Java, and C. Excellent problem-solving skills and interested in web development.
+
+TECHNICAL SKILLS
+Programming Languages: Python, C, Java, SQL, MATLAB
+Libraries & Tools: NumPy, Pandas, Scikit-learn, Git
+Tools & Environments: VS Code, Jupyter Notebook, GitHub, Google Colab
+
+PROJECTS
+E-Authentication System                                                                Aug 2024 – Jan 2025
+Web Development Project • HTML, CSS, JS
+• Developed an E-Authentication system based on OTP.
+• Worked on OTP validation using the user's phone number.
+• Used Excel for storing user data.
+
+AI-powered Portfolio Generator                                                         Ongoing
+Natural Language Processing • Python, HTML, CSS, JS
+• Built an AI-powered portfolio generator which generates a portfolio based on user-provided information.
+• User provides links such as LinkedIn, LeetCode, GitHub, and Medium.
+• Generated portfolio is also stored in PDF format.
+
+ACHIEVEMENTS
+250+ Questions on LeetCode                                                            Feb 2025 – Present
+Python
+• Solved daily DSA problems in Python.
+
+Web Development Course from Udemy                                                     Aug 2025 – Present
+HTML, CSS, JS, MongoDB, React.js
+• Ongoing web development course (85.9 hours).
+
+Python for Data Science from NPTEL                                                   Jul 2025 – Present
+Python
+• Ongoing 4-credit course on Python for Data Science.
+
+Contributor at GirlScript Summer of Code 2025                                        Aug 2025 – Present
+sktime
+• Contributing to open-source projects.
+• Opened pull requests recently.
+• Participated in project pitch competition conducted in collaboration with IIT Bombay.
+
+EDUCATION
+Visvesvaraya Technological University                                                Expected 2027
+B.E. in Computer Science and Engineering
+SDMIT College, Dharmasthala, Dakshina Kannada
+CGPA: 9.6 / 10
+
+CERTIFICATIONS
+• Certification from TCS.
+• Certification from Simplilearn on Web Development.
+`
+
+                  const blob = new Blob([resumeContent], { type: "text/plain" })
+                  const url = window.URL.createObjectURL(blob)
+                  const a = document.createElement("a")
+                  a.href = url
+                  a.download = "Arpitha_Jain_Resume.txt"
+                  document.body.appendChild(a)
+                  a.click()
+                  document.body.removeChild(a)
+                  window.URL.revokeObjectURL(url)
+>>>>>>> 9894679fade300d8128eb1ed2e7751efa8347dc8
                 }}
               >
                 Download Resume
@@ -549,6 +649,7 @@ export default function Portfolio() {
         </div>
       </section>
 
+<<<<<<< HEAD
       {/* Results Section */}
       <section id="results" className="py-20 bg-black">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -611,6 +712,8 @@ export default function Portfolio() {
         </div>
       </section>
 
+=======
+>>>>>>> 9894679fade300d8128eb1ed2e7751efa8347dc8
       {/* Contact Section */}
       <section id="contact" className="py-20 bg-gray-900">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
