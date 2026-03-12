@@ -1,48 +1,76 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Github, Linkedin, Mail, ExternalLink, Menu, X, ChevronDown, Code, Instagram } from "lucide-react"
-import Link from "next/link"
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Github,
+  Linkedin,
+  Mail,
+  ExternalLink,
+  Menu,
+  X,
+  ChevronDown,
+  Code,
+  Instagram,
+} from "lucide-react";
+import Link from "next/link";
 
 export default function Portfolio() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState("home")
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["home", "about", "projects", "skills", "achievements", "extracurricular", "resume", "contact"]
-      const scrollPosition = window.scrollY + 100
+      const sections = [
+        "home",
+        "about",
+        "projects",
+        "skills",
+        "achievements",
+        "extracurricular",
+        "resume",
+        "contact",
+      ];
+      const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
-        const element = document.getElementById(section)
+        const element = document.getElementById(section);
         if (element) {
-          const offsetTop = element.offsetTop
-          const offsetHeight = element.offsetHeight
+          const offsetTop = element.offsetTop;
+          const offsetHeight = element.offsetHeight;
 
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section)
-            break
+          if (
+            scrollPosition >= offsetTop &&
+            scrollPosition < offsetTop + offsetHeight
+          ) {
+            setActiveSection(section);
+            break;
           }
         }
       }
-    }
+    };
 
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
+    const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
+      element.scrollIntoView({ behavior: "smooth" });
     }
-    setIsMenuOpen(false)
-  }
+    setIsMenuOpen(false);
+  };
 
   const projects = [
     {
@@ -52,7 +80,8 @@ export default function Portfolio() {
       image: "/modern-ecommerce-interface.png",
       technologies: ["Python", "HTML", "CSS", "JavaScript", "NLP"],
       liveUrl: null,
-      githubUrl: "https://github.com/Arpithajain26/AI-powered-portfolio-generator",
+      githubUrl:
+        "https://github.com/Arpithajain26/AI-powered-portfolio-generator",
     },
     {
       title: "Sahayya Portal - Digital Complaint Registration",
@@ -72,16 +101,24 @@ export default function Portfolio() {
       liveUrl: null,
       githubUrl: "https://github.com/Arpithajain26/speak-up-studio.git",
     },
-  ]
+  ];
 
   const skills = [
     { name: "Python", level: 90, color: "from-red-500 to-orange-500" },
     { name: "Java", level: 70, color: "from-green-500 to-emerald-500" },
-    { name: "Web Development", level: 70, color: "from-blue-500 to-indigo-500" },
-    { name: "AI/ML Exploration", level: 75, color: "from-yellow-500 to-orange-500" },
+    {
+      name: "Web Development",
+      level: 70,
+      color: "from-blue-500 to-indigo-500",
+    },
+    {
+      name: "AI/ML Exploration",
+      level: 75,
+      color: "from-yellow-500 to-orange-500",
+    },
     { name: "C Programming", level: 65, color: "from-purple-500 to-pink-500" },
     { name: "SQL", level: 60, color: "from-teal-500 to-cyan-500" },
-  ]
+  ];
 
   const achievements = [
     {
@@ -109,30 +146,34 @@ export default function Portfolio() {
       description: "Contributor at GirlScript Summer of Code 2025",
       icon: "🌟",
     },
-  ]
+  ];
 
   const extracurriculars = [
     {
       title: "Project Pitch Competition",
-      description: "Participated in project pitch competition conducted in collaboration with IIT Bombay",
+      description:
+        "Participated in project pitch competition conducted in collaboration with IIT Bombay",
       icon: "🎯",
     },
     {
       title: "Open Source Contributions",
-      description: "Active contributor to sktime project during GirlScript Summer of Code 2025",
+      description:
+        "Active contributor to sktime project during GirlScript Summer of Code 2025",
       icon: "🌐",
     },
     {
       title: "Technical Problem Solving",
-      description: "Daily practice of Data Structures and Algorithms on LeetCode platform",
+      description:
+        "Daily practice of Data Structures and Algorithms on LeetCode platform",
       icon: "🧩",
     },
     {
       title: "Continuous Learning",
-      description: "Pursuing multiple online courses in Web Development and Python for Data Science",
+      description:
+        "Pursuing multiple online courses in Web Development and Python for Data Science",
       icon: "📚",
     },
-  ]
+  ];
 
   return (
     <div className="min-h-screen bg-gray-900">
@@ -140,35 +181,53 @@ export default function Portfolio() {
       <nav className="fixed top-0 w-full bg-black/80 backdrop-blur-md border-b border-gray-700 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <div className="font-playfair font-bold text-xl text-cyan-400 animate-pulse">&lt; Arpitha Jain /&gt;</div>
+            <div className="font-playfair font-bold text-xl text-cyan-400 animate-pulse">
+              &lt; Arpitha Jain /&gt;
+            </div>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex space-x-8">
-              {["home", "about", "projects", "skills", "achievements", "extracurricular", "resume", "contact"].map(
-                (item) => (
-                  <button
-                    key={item}
-                    onClick={() => scrollToSection(item)}
-                    className={`capitalize transition-all duration-300 transform hover:scale-105 ${
-                      activeSection === item
-                        ? "text-cyan-400 font-medium border-b-2 border-cyan-400"
-                        : "text-gray-300 hover:text-white"
-                    }`}
-                  >
-                    {item === "extracurricular" ? "Activities" : item}
-                  </button>
-                ),
-              )}
-              <Link href="/resume" className="text-gray-300 hover:text-cyan-400 transition-all duration-300">
+              {[
+                "home",
+                "about",
+                "projects",
+                "skills",
+                "achievements",
+                "extracurricular",
+                "resume",
+                "contact",
+              ].map((item) => (
+                <button
+                  key={item}
+                  onClick={() => scrollToSection(item)}
+                  className={`capitalize transition-all duration-300 transform hover:scale-105 ${
+                    activeSection === item
+                      ? "text-cyan-400 font-medium border-b-2 border-cyan-400"
+                      : "text-gray-300 hover:text-white"
+                  }`}
+                >
+                  {item === "extracurricular" ? "Activities" : item}
+                </button>
+              ))}
+              <Link
+                href="/resume"
+                className="text-gray-300 hover:text-cyan-400 transition-all duration-300"
+              >
                 Resume Page
               </Link>
-              <Link href="/biodata" className="text-gray-300 hover:text-cyan-400 transition-all duration-300">
+              <Link
+                href="/biodata"
+                className="text-gray-300 hover:text-cyan-400 transition-all duration-300"
+              >
                 Bio-data Page
               </Link>
             </div>
 
             {/* Mobile Navigation Button */}
-            <button className="md:hidden text-white" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            <button
+              className="md:hidden text-white"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
@@ -176,17 +235,25 @@ export default function Portfolio() {
           {/* Mobile Navigation Menu */}
           {isMenuOpen && (
             <div className="md:hidden py-4 border-t border-gray-700 animate-fade-in">
-              {["home", "about", "projects", "skills", "achievements", "extracurricular", "results", "resume", "contact"].map(
-                (item) => (
-                  <button
-                    key={item}
-                    onClick={() => scrollToSection(item)}
-                    className="block w-full text-left py-2 capitalize text-gray-300 hover:text-white transition-colors"
-                  >
-                    {item === "extracurricular" ? "Activities" : item}
-                  </button>
-                ),
-              )}
+              {[
+                "home",
+                "about",
+                "projects",
+                "skills",
+                "achievements",
+                "extracurricular",
+                "results",
+                "resume",
+                "contact",
+              ].map((item) => (
+                <button
+                  key={item}
+                  onClick={() => scrollToSection(item)}
+                  className="block w-full text-left py-2 capitalize text-gray-300 hover:text-white transition-colors"
+                >
+                  {item === "extracurricular" ? "Activities" : item}
+                </button>
+              ))}
               <Link
                 href="/resume"
                 className="block w-full text-left py-2 text-gray-300 hover:text-white transition-colors"
@@ -230,7 +297,9 @@ export default function Portfolio() {
             <p className="text-xl md:text-2xl text-white mb-6 animate-slide-up delay-200">
               <span className="text-cyan-300 font-semibold">CSE Student</span>{" "}
               <span className="text-white font-medium">&</span>{" "}
-              <span className="text-purple-300 font-semibold">AI/ML Explorer</span>
+              <span className="text-purple-300 font-semibold">
+                AI/ML Explorer
+              </span>
             </p>
             <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-8 leading-relaxed animate-slide-up delay-300">
               Contact: 8792008746
@@ -314,10 +383,12 @@ export default function Portfolio() {
           <Card className="bg-gray-800 border-gray-700 hover:border-cyan-400 transition-all duration-500 animate-slide-up">
             <CardContent className="p-8">
               <p className="text-lg text-gray-300 leading-relaxed text-center">
-                I am Arpitha Jain C B from 3rd year CSE department. I am interested in Python, web development and AI.
-                Currently pursuing B.E. in Computer Science and Engineering at SDMIT College, Dharmasthala, with a CGPA
-                of 9.6/10. I'm passionate about exploring AI/ML technologies while building strong foundations in web
-                development.
+                I am Arpitha Jain C B from 3rd year CSE department. I am
+                interested in Python, web development and AI. Currently pursuing
+                B.E. in Computer Science and Engineering at SDMIT College,
+                Dharmasthala, with a CGPA of 9.6/10. I'm passionate about
+                exploring AI/ML technologies while building strong foundations
+                in web development.
               </p>
             </CardContent>
           </Card>
@@ -334,7 +405,8 @@ export default function Portfolio() {
               </span>
             </h2>
             <p className="text-lg text-gray-400 max-w-2xl mx-auto animate-slide-up delay-200">
-              Here are some of my recent projects that showcase my skills and experience
+              Here are some of my recent projects that showcase my skills and
+              experience
             </p>
           </div>
 
@@ -353,8 +425,17 @@ export default function Portfolio() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-4">
                     {project.liveUrl && (
-                      <Button size="sm" variant="secondary" asChild className="bg-cyan-500 hover:bg-cyan-600 text-white">
-                        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                      <Button
+                        size="sm"
+                        variant="secondary"
+                        asChild
+                        className="bg-cyan-500 hover:bg-cyan-600 text-white"
+                      >
+                        <a
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
                           <ExternalLink size={16} className="mr-2" />
                           Live Demo
                         </a>
@@ -366,7 +447,11 @@ export default function Portfolio() {
                       asChild
                       className="bg-purple-500 hover:bg-purple-600 text-white"
                     >
-                      <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         <Github size={16} className="mr-2" />
                         Code
                       </a>
@@ -374,8 +459,12 @@ export default function Portfolio() {
                   </div>
                 </div>
                 <CardHeader>
-                  <CardTitle className="text-cyan-400">{project.title}</CardTitle>
-                  <CardDescription className="text-gray-400">{project.description}</CardDescription>
+                  <CardTitle className="text-cyan-400">
+                    {project.title}
+                  </CardTitle>
+                  <CardDescription className="text-gray-400">
+                    {project.description}
+                  </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="flex flex-wrap gap-2">
@@ -403,17 +492,29 @@ export default function Portfolio() {
             <h2 className="font-playfair text-3xl md:text-4xl font-bold text-white mb-4 animate-slide-up">
               <span className="text-cyan-400">Technical Skills</span>
             </h2>
-            <p className="text-lg text-gray-400 animate-slide-up delay-200">Technologies and tools I work with</p>
+            <p className="text-lg text-gray-400 animate-slide-up delay-200">
+              Technologies and tools I work with
+            </p>
           </div>
 
           <div className="bg-gray-800 border border-gray-700 rounded-xl p-8 shadow-2xl animate-slide-up">
-            <h3 className="text-xl font-semibold text-white mb-8 text-center">Core Skills</h3>
+            <h3 className="text-xl font-semibold text-white mb-8 text-center">
+              Core Skills
+            </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {skills.map((skill, index) => (
-                <div key={index} className="space-y-3" style={{ animationDelay: `${index * 100}ms` }}>
+                <div
+                  key={index}
+                  className="space-y-3"
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
                   <div className="flex justify-between items-center">
-                    <span className="font-semibold text-white text-lg">{skill.name}</span>
-                    <span className="text-cyan-400 font-bold text-lg">{skill.level}%</span>
+                    <span className="font-semibold text-white text-lg">
+                      {skill.name}
+                    </span>
+                    <span className="text-cyan-400 font-bold text-lg">
+                      {skill.level}%
+                    </span>
                   </div>
                   <div className="relative">
                     <div className="w-full bg-gray-600 rounded-full h-4 overflow-hidden">
@@ -441,7 +542,9 @@ export default function Portfolio() {
             <h2 className="font-playfair text-3xl md:text-4xl font-bold text-white mb-4 animate-slide-up">
               <span className="text-cyan-400">Achievements</span>
             </h2>
-            <p className="text-lg text-gray-400 animate-slide-up delay-200">Key milestones and accomplishments</p>
+            <p className="text-lg text-gray-400 animate-slide-up delay-200">
+              Key milestones and accomplishments
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -453,8 +556,12 @@ export default function Portfolio() {
               >
                 <CardContent className="p-6 text-center">
                   <div className="text-4xl mb-4">{achievement.icon}</div>
-                  <h3 className="text-cyan-400 font-semibold mb-2">{achievement.title}</h3>
-                  <p className="text-gray-400 text-sm">{achievement.description}</p>
+                  <h3 className="text-cyan-400 font-semibold mb-2">
+                    {achievement.title}
+                  </h3>
+                  <p className="text-gray-400 text-sm">
+                    {achievement.description}
+                  </p>
                 </CardContent>
               </Card>
             ))}
@@ -466,9 +573,13 @@ export default function Portfolio() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-playfair text-3xl md:text-4xl font-bold text-white mb-4 animate-slide-up">
-              <span className="text-purple-400">Extracurricular Activities</span>
+              <span className="text-purple-400">
+                Extracurricular Activities
+              </span>
             </h2>
-            <p className="text-lg text-gray-400 animate-slide-up delay-200">Beyond academics and technical skills</p>
+            <p className="text-lg text-gray-400 animate-slide-up delay-200">
+              Beyond academics and technical skills
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -484,8 +595,12 @@ export default function Portfolio() {
                       {activity.icon}
                     </div>
                     <div>
-                      <h3 className="text-purple-400 font-semibold mb-2">{activity.title}</h3>
-                      <p className="text-gray-300 text-sm leading-relaxed">{activity.description}</p>
+                      <h3 className="text-purple-400 font-semibold mb-2">
+                        {activity.title}
+                      </h3>
+                      <p className="text-gray-300 text-sm leading-relaxed">
+                        {activity.description}
+                      </p>
                     </div>
                   </div>
                 </CardContent>
@@ -499,7 +614,9 @@ export default function Portfolio() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-playfair text-3xl md:text-4xl font-bold text-white mb-4 animate-slide-up">
-              <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">Resume</span>
+              <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                Resume
+              </span>
             </h2>
           </div>
 
@@ -507,9 +624,12 @@ export default function Portfolio() {
             {/* Header */}
             <Card className="bg-gray-800 border-gray-700 animate-slide-up">
               <CardContent className="p-8 text-center">
-                <h1 className="text-3xl font-bold text-cyan-400 mb-4">&lt; Arpitha Jain C B /&gt;</h1>
+                <h1 className="text-3xl font-bold text-cyan-400 mb-4">
+                  &lt; Arpitha Jain C B /&gt;
+                </h1>
                 <p className="text-gray-300">
-                  8792008746 | arpithaammujain39@gmail.com | linkedin.com/in/arpitha-jain-c-b-475438290 |
+                  8792008746 | arpithaammujain39@gmail.com |
+                  linkedin.com/in/arpitha-jain-c-b-475438290 |
                   github.com/Arpithajain26
                 </p>
               </CardContent>
@@ -521,19 +641,20 @@ export default function Portfolio() {
                 className="bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg shadow-cyan-500/25"
                 onClick={async () => {
                   try {
-                    const response = await fetch("/api/download-resume")
-                    if (!response.ok) throw new Error("Failed to download resume")
-                    const blob = await response.blob()
-                    const url = window.URL.createObjectURL(blob)
-                    const link = document.createElement("a")
-                    link.href = url
-                    link.download = "Arpitha_Jain_Resume.pdf"
-                    document.body.appendChild(link)
-                    link.click()
-                    document.body.removeChild(link)
-                    window.URL.revokeObjectURL(url)
+                    const response = await fetch("/api/download-resume");
+                    if (!response.ok)
+                      throw new Error("Failed to download resume");
+                    const blob = await response.blob();
+                    const url = window.URL.createObjectURL(blob);
+                    const link = document.createElement("a");
+                    link.href = url;
+                    link.download = "Arpitha_Jain_Resume.pdf";
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    window.URL.revokeObjectURL(url);
                   } catch (error) {
-                    console.error("[v0] Resume download error:", error)
+                    console.error("[v0] Resume download error:", error);
                   }
                 }}
               >
@@ -551,7 +672,9 @@ export default function Portfolio() {
             <h2 className="font-playfair text-3xl md:text-4xl font-bold text-white mb-4 animate-slide-up">
               <span className="text-purple-400">Academic Results</span>
             </h2>
-            <p className="text-gray-300 animate-slide-up delay-100">View and download your semester results</p>
+            <p className="text-gray-300 animate-slide-up delay-100">
+              View and download your semester results
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-8">
@@ -567,25 +690,28 @@ export default function Portfolio() {
                 onClick={async () => {
                   try {
                     const semesterNames: { [key: number]: string } = {
-                      1: '1st',
-                      2: '2nd',
-                      3: '3rd',
-                      4: '4th',
-                      5: '5th',
-                    }
-                    const response = await fetch(`/api/download-result?sem=${semester.sem}`)
-                    if (!response.ok) throw new Error("Failed to download result")
-                    const blob = await response.blob()
-                    const url = window.URL.createObjectURL(blob)
-                    const link = document.createElement("a")
-                    link.href = url
-                    link.download = `VTU_${semesterNames[semester.sem]}_result.pdf`
-                    document.body.appendChild(link)
-                    link.click()
-                    document.body.removeChild(link)
-                    window.URL.revokeObjectURL(url)
+                      1: "1st",
+                      2: "2nd",
+                      3: "3rd",
+                      4: "4th",
+                      5: "5th",
+                    };
+                    const response = await fetch(
+                      `/api/download-result?sem=${semester.sem}`,
+                    );
+                    if (!response.ok)
+                      throw new Error("Failed to download result");
+                    const blob = await response.blob();
+                    const url = window.URL.createObjectURL(blob);
+                    const link = document.createElement("a");
+                    link.href = url;
+                    link.download = `VTU_${semesterNames[semester.sem]}_result.pdf`;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    window.URL.revokeObjectURL(url);
                   } catch (error) {
-                    console.error("[v0] Result download error:", error)
+                    console.error("[v0] Result download error:", error);
                   }
                 }}
                 className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 px-4 rounded-lg transform hover:scale-105 transition-all duration-300 shadow-lg shadow-purple-500/25 animate-slide-up"
@@ -597,9 +723,14 @@ export default function Portfolio() {
 
           <Card className="bg-gray-800 border-purple-500/30 animate-slide-up delay-200">
             <CardContent className="p-8">
-              <h3 className="text-xl font-bold text-purple-300 mb-4">📋 How to Download</h3>
+              <h3 className="text-xl font-bold text-purple-300 mb-4">
+                📋 How to Download
+              </h3>
               <p className="text-gray-300 leading-relaxed">
-                Click on any semester button above to download your VTU exam results in PDF format. All results are officially from Visvesvaraya Technological University and contain your subject-wise marks, grades, and performance details.
+                Click on any semester button above to download your VTU exam
+                results in PDF format. All results are officially from
+                Visvesvaraya Technological University and contain your
+                subject-wise marks, grades, and performance details.
               </p>
             </CardContent>
           </Card>
@@ -623,7 +754,10 @@ export default function Portfolio() {
               <form className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-cyan-300 mb-2">
+                    <label
+                      htmlFor="name"
+                      className="block text-sm font-medium text-cyan-300 mb-2"
+                    >
                       Name
                     </label>
                     <Input
@@ -633,7 +767,10 @@ export default function Portfolio() {
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-cyan-300 mb-2">
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-medium text-cyan-300 mb-2"
+                    >
                       Email
                     </label>
                     <Input
@@ -645,7 +782,10 @@ export default function Portfolio() {
                   </div>
                 </div>
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-cyan-300 mb-2">
+                  <label
+                    htmlFor="subject"
+                    className="block text-sm font-medium text-cyan-300 mb-2"
+                  >
                     Subject
                   </label>
                   <Input
@@ -655,7 +795,10 @@ export default function Portfolio() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-cyan-300 mb-2">
+                  <label
+                    htmlFor="message"
+                    className="block text-sm font-medium text-cyan-300 mb-2"
+                  >
                     Message
                   </label>
                   <Textarea
@@ -694,9 +837,11 @@ export default function Portfolio() {
       {/* Footer */}
       <footer className="py-8 bg-gray-900 border-t border-gray-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-gray-400">&copy; 2024 Arpitha Jain C B. All rights reserved.</p>
+          <p className="text-gray-400">
+            &copy; 2026 Arpitha Jain C B. All rights reserved.
+          </p>
         </div>
       </footer>
     </div>
-  )
+  );
 }
