@@ -319,7 +319,7 @@ export default function Portfolio() {
           <Card className="bg-gray-800 border-gray-700 hover:border-cyan-400 transition-all duration-500 animate-slide-up">
             <CardContent className="p-8">
               <p className="text-lg text-gray-300 leading-relaxed text-center">
-                I am Arpitha Jain C B from 3rd year CSE department. I am interested in Python, web development and AI.
+                I am Arpitha Jain C B from 4th year CSE department. I am interested in Python, web development and AI.
                 Currently pursuing B.E. in Computer Science and Engineering at SDMIT College, Dharmasthala, with a CGPA
                 of 9.6/10. I'm passionate about exploring AI/ML technologies while building strong foundations in web
                 development.
