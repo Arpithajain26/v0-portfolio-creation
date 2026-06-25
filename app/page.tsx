@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Github, Linkedin, Mail, ExternalLink, Menu, X, ChevronDown, Code, Instagram } from "lucide-react"
+import { Github, Linkedin, Mail, ExternalLink, Menu, X, ChevronDown, Youtube, Instagram } from "lucide-react"
 import Link from "next/link"
 
 export default function Portfolio() {
@@ -277,15 +277,15 @@ export default function Portfolio() {
               <Linkedin size={24} />
             </a>
             <a
-              href="https://leetcode.com/u/ARPITHAJAINCB/"
+              href="https://youtube.com/@arpitha._.builds?si=fJt7jNCz-aziNQsU"
               className="text-gray-400 hover:text-cyan-400 transition-all duration-300 transform hover:scale-125"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Code size={24} />
+              <Youtube size={24} />
             </a>
             <a
-              href="https://www.instagram.com/arpitha._jain/?hl=en"
+              href="https://www.instagram.com/arpitha._.buildz/?hl=en"
               className="text-gray-400 hover:text-cyan-400 transition-all duration-300 transform hover:scale-125"
               target="_blank"
               rel="noopener noreferrer"
