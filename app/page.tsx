@@ -1,147 +1,158 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Github, Linkedin, Mail, ExternalLink, Youtube, Instagram, Menu, X, ArrowRight } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { Github, Linkedin, Mail, ExternalLink, Menu, X, ChevronDown, Youtube, Instagram } from "lucide-react"
 import Link from "next/link"
 
 export default function Portfolio() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [scrollY, setScrollY] = useState(0)
+  const [activeSection, setActiveSection] = useState("home")
 
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY)
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+  const sections = ["home", "about", "projects", "skills", "achievements", "extracurricular", "results", "resume", "contact"]
 
   const projects = [
     {
       title: "AI Powered Portfolio Generator",
-      description: "Built an AI-powered portfolio generator which generates a portfolio based on user-provided information. User provides links such as LinkedIn, GitHub. Generated portfolio is also stored in PDF format.",
+      description:
+        "Built an AI-powered portfolio generator which generates a portfolio based on user-provided information. User provides links such as LinkedIn, LeetCode, GitHub, and Medium. Generated portfolio is also stored in PDF format.",
+      image: "/modern-ecommerce-interface.png",
       technologies: ["Python", "HTML", "CSS", "JavaScript", "NLP"],
       liveUrl: null,
       githubUrl: "https://github.com/Arpithajain26/AI-powered-portfolio-generator",
     },
     {
-      title: "Sahayya Portal",
-      description: "A digital platform designed for complaint registration and management. Streamlines the process of lodging, tracking, and resolving complaints with an intuitive user interface.",
-      technologies: ["React", "Node.js", "MongoDB", "Express"],
+      title: "Sahayya Portal - Digital Complaint Registration",
+      description:
+        "A digital platform designed for complaint registration and management. Streamlines the process of lodging, tracking, and resolving complaints with an intuitive user interface and efficient backend system.",
+      image: "/task-management-dashboard.png",
+      technologies: ["React", "Node.js", "MongoDB", "Express", "Tailwind CSS"],
       liveUrl: "https://sahayya-portal-tlgp.vercel.app/",
       githubUrl: "https://github.com/Arpithajain26/sahayya-portal.git",
     },
     {
       title: "Speak Up Studio",
-      description: "An interactive platform for speech and communication practice. Tools to improve public speaking and communication skills through guided exercises and feedback.",
-      technologies: ["React", "Node.js", "Express", "MongoDB"],
+      description:
+        "An interactive platform for speech and communication practice. Currently under development, featuring tools for users to improve their public speaking and communication skills through guided exercises and feedback.",
+      image: "/weather-analytics-dashboard-with-charts.png",
+      technologies: ["React", "Node.js", "Express", "MongoDB", "Web Audio API"],
       liveUrl: null,
       githubUrl: "https://github.com/Arpithajain26/speak-up-studio.git",
     },
   ]
 
+  const achievements = [
+    {
+      title: "500+ LeetCode Problems",
+      description: "Solved 500+ DSA problems on LeetCode",
+      icon: "🏆",
+    },
+    {
+      title: "Web Development & Python Courses",
+      description: "Completed courses from Udemy and NPTEL",
+      icon: "🎓",
+    },
+    {
+      title: "GirlScript Summer of Code Contributor",
+      description: "Contributor at GirlScript Summer of Code 2025",
+      icon: "🌟",
+    },
+    {
+      title: "CodeCraft Event Coordinator",
+      description: "Coordinated CodeCraft event, organizing workshops and competitions for students",
+      icon: "📋",
+    },
+  ]
+
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-black text-white overflow-x-hidden">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-black/80 backdrop-blur-md border-b border-gray-900 z-50 transition-all duration-300">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-          <Link href="#home" className="text-xl font-bold tracking-wide bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
-            Arpitha Jain
+      <nav className="fixed top-0 w-full bg-black/95 backdrop-blur-sm border-b border-gray-800 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+          <Link href="#" className="text-2xl font-bold tracking-tight bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+            &lt; Arpitha Jain /&gt;
           </Link>
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center space-x-8">
-            <a href="#home" className="text-gray-400 hover:text-white transition-colors duration-300 text-sm font-medium">
-              Home
-            </a>
-            <a href="#about" className="text-gray-400 hover:text-white transition-colors duration-300 text-sm font-medium">
-              About
-            </a>
-            <a href="#projects" className="text-gray-400 hover:text-white transition-colors duration-300 text-sm font-medium">
-              Projects
-            </a>
-            <a href="#skills" className="text-gray-400 hover:text-white transition-colors duration-300 text-sm font-medium">
-              Skills
-            </a>
-            <a href="#contact" className="text-gray-400 hover:text-white transition-colors duration-300 text-sm font-medium">
-              Contact
-            </a>
+            {["home", "about", "projects", "skills", "achievements", "extracurricular", "results", "resume", "contact"].map(
+              (section) => (
+                <a
+                  key={section}
+                  href={`#${section}`}
+                  className="text-gray-400 hover:text-cyan-400 transition-colors capitalize text-sm font-medium"
+                >
+                  {section}
+                </a>
+              )
+            )}
           </div>
 
           {/* Mobile Menu Button */}
-          <button
-            className="md:hidden text-white"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
+          <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Nav */}
         {isMenuOpen && (
-          <div className="md:hidden bg-black border-t border-gray-800 px-6 py-4 space-y-4">
-            <a href="#about" className="block text-gray-400 hover:text-white transition-colors">
-              About
-            </a>
-            <a href="#projects" className="block text-gray-400 hover:text-white transition-colors">
-              Projects
-            </a>
-            <a href="#skills" className="block text-gray-400 hover:text-white transition-colors">
-              Skills
-            </a>
-            <a href="#contact" className="block text-gray-400 hover:text-white transition-colors">
-              Contact
-            </a>
+          <div className="md:hidden bg-black/98 border-b border-gray-800 p-4">
+            <div className="space-y-4">
+              {["home", "about", "projects", "skills", "achievements", "extracurricular", "results", "resume", "contact"].map(
+                (section) => (
+                  <a
+                    key={section}
+                    href={`#${section}`}
+                    className="block text-gray-400 hover:text-cyan-400 capitalize text-sm"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {section}
+                  </a>
+                )
+              )}
+            </div>
           </div>
         )}
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="min-h-screen flex items-center pt-20 pb-20 px-6">
-        <div className="max-w-6xl mx-auto w-full">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div className="space-y-8">
-              <div className="space-y-4">
-                <p className="text-cyan-400 font-medium text-lg">Welcome to my portfolio</p>
-                <h1 className="text-6xl md:text-7xl font-bold leading-tight">
-                  Hi, I&apos;m <span className="bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">Arpitha</span>
+      <section id="home" className="min-h-screen flex items-center pt-24 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto w-full">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="space-y-8 animate-slide-up">
+              <div>
+                <p className="text-cyan-400 font-medium mb-2">Welcome to my portfolio</p>
+                <h1 className="text-5xl md:text-7xl font-bold mb-4 leading-tight">
+                  <span className="text-cyan-400">&lt;</span> Arpitha Jain <span className="text-purple-500">/&gt;</span>
                 </h1>
-                <p className="text-2xl text-gray-400 font-light">4th Year CSE Student & Developer</p>
               </div>
-              <p className="text-gray-400 text-lg leading-relaxed max-w-xl">
-                Passionate about building elegant solutions with Python, Web Development, and exploring AI/ML. Currently an <span className="text-white font-medium">AI/ML Intern at Infosys Springboard</span>.
+              <div>
+                <p className="text-xl text-gray-300 mb-2">4th Year CSE Student</p>
+                <p className="text-lg text-gray-400">AI/ML Intern at Infosys Springboard</p>
+              </div>
+              <p className="text-lg text-gray-300 leading-relaxed max-w-lg">
+                Passionate about building elegant solutions with <span className="text-cyan-400">Python</span>, <span className="text-purple-500">Web Development</span>, and exploring <span className="text-pink-500">AI/ML</span> technologies.
               </p>
-              <div className="flex gap-4 pt-4">
-                <a href="#projects" className="px-8 py-3 bg-white text-black font-semibold rounded hover:bg-gray-200 transition-all duration-300 flex items-center gap-2 group">
-                  View My Work <ArrowRight className="group-hover:translate-x-1 transition-transform" size={18} />
-                </a>
-                <a href="#contact" className="px-8 py-3 border-2 border-gray-600 text-white rounded hover:border-white hover:bg-white/5 transition-all duration-300">
-                  Get In Touch
-                </a>
-              </div>
-              <div className="flex gap-4 pt-4">
-                <a href="https://github.com/Arpithajain26" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
-                  <Github size={24} />
-                </a>
-                <a href="https://linkedin.com/in/arpitha-jain-c-b-475438290" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
-                  <Linkedin size={24} />
-                </a>
-                <a href="https://youtube.com/@arpitha._.builds?si=fJt7jNCz-aziNQsU" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
-                  <Youtube size={24} />
-                </a>
-                <a href="https://www.instagram.com/arpitha._.buildz/?hl=en" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
-                  <Instagram size={24} />
-                </a>
-                <a href="mailto:arpithaammujain39@gmail.com" className="text-gray-400 hover:text-white transition-colors">
-                  <Mail size={24} />
-                </a>
+              <div className="flex gap-4">
+                <Button asChild className="bg-cyan-500 hover:bg-cyan-600 text-black font-semibold px-6 py-3">
+                  <a href="#projects">View My Work</a>
+                </Button>
+                <Button asChild variant="outline" className="border-purple-500 text-purple-400 hover:bg-purple-500/10 px-6 py-3">
+                  <a href="#contact">Get In Touch</a>
+                </Button>
               </div>
             </div>
-            <div className="hidden md:flex justify-center">
-              <div className="relative w-80 h-96">
-                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-2xl blur-2xl"></div>
+            <div className="hidden md:flex justify-center animate-slide-up delay-100">
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-2xl blur-3xl"></div>
                 <img
                   src="/arpitha-photo.jpg"
                   alt="Arpitha Jain"
-                  className="w-full h-full object-cover rounded-2xl border border-gray-700 relative z-10"
+                  className="relative w-80 h-96 object-cover rounded-2xl border-2 border-purple-500/30 shadow-2xl shadow-purple-500/20"
                 />
               </div>
             </div>
@@ -150,102 +161,86 @@ export default function Portfolio() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 px-6 max-w-7xl mx-auto border-t border-gray-800">
-        <h2 className="text-3xl font-bold mb-12">About</h2>
-        <div className="grid md:grid-cols-2 gap-12">
-          <div>
-            <p className="text-gray-400 text-lg leading-relaxed mb-6">
-              I'm currently pursuing B.E. in Computer Science and Engineering at SDMIT College, Dharmasthala with a CGPA of 9.6/10. I'm fascinated by AI/ML and enjoy building web applications that solve real problems.
+      <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900/50">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-4xl font-bold mb-12 text-center text-cyan-400">About Me</h2>
+          <div className="bg-gray-800/40 backdrop-blur border border-gray-700 rounded-2xl p-8 max-w-3xl mx-auto animate-slide-up">
+            <p className="text-gray-300 leading-relaxed text-center text-lg">
+              I am Arpitha Jain C B from 4th year CSE department. I am interested in Python, web development and AI.
+              Currently pursuing B.E. in Computer Science and Engineering at SDMIT College, Dharmasthala, with a CGPA
+              of 9.6/10. I'm passionate about exploring AI/ML technologies while building strong foundations in web
+              development.
             </p>
-            <p className="text-gray-400 text-lg leading-relaxed">
-              When I'm not coding, you can find me contributing to open-source projects, solving DSA problems on LeetCode, or exploring new technologies.
-            </p>
-          </div>
-          <div className="space-y-6">
-            <div>
-              <h3 className="font-semibold mb-2">Education</h3>
-              <p className="text-gray-400">B.E. Computer Science Engineering</p>
-              <p className="text-gray-500 text-sm">SDMIT College, Dharmasthala</p>
-            </div>
-            <div>
-              <h3 className="font-semibold mb-2">Achievements</h3>
-              <ul className="text-gray-400 space-y-1 text-sm">
-                <li>• 9.6 CGPA</li>
-                <li>• CodeCraft Event Coordinator</li>
-                <li>• GSOC 2025 Contributor</li>
-                <li>• TCS & Udemy Certifications</li>
-              </ul>
-            </div>
           </div>
         </div>
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 px-6 max-w-7xl mx-auto border-t border-gray-800">
-        <h2 className="text-3xl font-bold mb-12">Selected Work</h2>
-        <div className="space-y-16">
-          {projects.map((project, index) => (
-            <div key={index} className="group">
-              <h3 className="text-2xl font-bold mb-3 group-hover:text-cyan-400 transition-colors">
-                {project.title}
-              </h3>
-              <p className="text-gray-400 mb-4 leading-relaxed max-w-2xl">
-                {project.description}
-              </p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                {project.technologies.map((tech, i) => (
-                  <span key={i} className="text-xs px-2 py-1 bg-gray-900 border border-gray-800 text-gray-400 rounded">
-                    {tech}
-                  </span>
-                ))}
+      <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-4xl font-bold mb-12 text-center text-cyan-400">Featured Projects</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {projects.map((project, index) => (
+              <div key={index} className="group animate-slide-up" style={{ animationDelay: `${index * 100}ms` }}>
+                <Card className="bg-gray-800/40 border-gray-700 hover:border-purple-500/50 transition-all duration-300 h-full flex flex-col overflow-hidden">
+                  <div className="relative overflow-hidden h-48">
+                    <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-4">
+                      {project.liveUrl && (
+                        <Button size="sm" variant="secondary" asChild className="bg-cyan-500 hover:bg-cyan-600 text-white">
+                          <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                            <ExternalLink size={16} className="mr-2" />
+                            Live Demo
+                          </a>
+                        </Button>
+                      )}
+                      <Button size="sm" variant="secondary" asChild className="bg-purple-500 hover:bg-purple-600 text-white">
+                        <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                          <Github size={16} className="mr-2" />
+                          Code
+                        </a>
+                      </Button>
+                    </div>
+                  </div>
+                  <CardContent className="flex-1 flex flex-col p-6">
+                    <h3 className="text-xl font-bold mb-2 text-white">{project.title}</h3>
+                    <p className="text-gray-400 mb-4 flex-1">{project.description}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {project.technologies.map((tech, i) => (
+                        <Badge key={i} className="bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
-              <div className="flex gap-4">
-                {project.liveUrl && (
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-cyan-400 hover:text-cyan-300 text-sm font-medium flex items-center gap-2 transition-colors"
-                  >
-                    Live Demo <ExternalLink size={16} />
-                  </a>
-                )}
-                <a
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-cyan-400 hover:text-cyan-300 text-sm font-medium flex items-center gap-2 transition-colors"
-                >
-                  View Code <ExternalLink size={16} />
-                </a>
-              </div>
-              {index < projects.length - 1 && <div className="mt-12 border-t border-gray-800"></div>}
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="py-20 px-6 max-w-7xl mx-auto border-t border-gray-800">
-        <h2 className="text-3xl font-bold mb-12">Skills</h2>
-        <div className="grid md:grid-cols-2 gap-12">
-          <div>
-            <h3 className="font-semibold mb-4 text-gray-300">Languages</h3>
-            <div className="space-y-3">
+      <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900/50">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-4xl font-bold mb-12 text-center text-cyan-400">Technical Skills</h2>
+          <div className="bg-gray-800/40 backdrop-blur border border-gray-700 rounded-2xl p-8 animate-slide-up">
+            <h3 className="text-2xl font-bold text-purple-400 mb-8">Core Skills</h3>
+            <div className="grid md:grid-cols-2 gap-8">
               {[
                 { name: "Python", level: 90 },
                 { name: "Java", level: 70 },
-                { name: "C Programming", level: 65 },
-                { name: "SQL", level: 60 },
-              ].map((skill) => (
-                <div key={skill.name}>
-                  <div className="flex justify-between mb-1 text-sm">
-                    <span className="text-gray-400">{skill.name}</span>
-                    <span className="text-gray-600">{skill.level}%</span>
+                { name: "Web Development", level: 70 },
+                { name: "AI/ML Exploration", level: 75 },
+              ].map((skill, index) => (
+                <div key={index}>
+                  <div className="flex justify-between mb-2">
+                    <span className="font-medium text-white">{skill.name}</span>
+                    <span className="text-cyan-400">{skill.level}%</span>
                   </div>
-                  <div className="w-full bg-gray-900 h-1 rounded-full overflow-hidden">
+                  <div className="h-2 bg-gray-700 rounded-full overflow-hidden">
                     <div
-                      className="bg-cyan-400 h-full rounded-full transition-all"
+                      className="h-full bg-gradient-to-r from-cyan-500 to-purple-500 transition-all duration-500"
                       style={{ width: `${skill.level}%` }}
                     />
                   </div>
@@ -253,81 +248,167 @@ export default function Portfolio() {
               ))}
             </div>
           </div>
-          <div>
-            <h3 className="font-semibold mb-4 text-gray-300">Technologies</h3>
-            <div className="flex flex-wrap gap-2">
-              {["React", "Node.js", "MongoDB", "Express", "Tailwind", "Next.js", "Git", "Web Audio API"].map(
-                (tech) => (
-                  <span key={tech} className="px-3 py-1 bg-gray-900 border border-gray-800 text-gray-400 text-sm rounded">
-                    {tech}
-                  </span>
-                ),
-              )}
+        </div>
+      </section>
+
+      {/* Achievements Section */}
+      <section id="achievements" className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-4xl font-bold mb-12 text-center text-cyan-400">Achievements</h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            {achievements.map((achievement, index) => (
+              <div key={index} className="bg-gray-800/40 border border-gray-700 rounded-lg p-6 hover:border-cyan-500/50 transition-all animate-slide-up" style={{ animationDelay: `${index * 50}ms` }}>
+                <div className="text-4xl mb-4">{achievement.icon}</div>
+                <h3 className="text-xl font-bold text-white mb-2">{achievement.title}</h3>
+                <p className="text-gray-400">{achievement.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Extracurricular Section */}
+      <section id="extracurricular" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900/50">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-4xl font-bold mb-12 text-center text-cyan-400">Extracurricular Activities</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { title: "Coding Competitions", desc: "Actively participate in hackathons and coding contests" },
+              { title: "Open Source", desc: "Contributing to open-source projects and communities" },
+              { title: "Tech Events", desc: "Organizing and attending technical workshops and meetups" },
+            ].map((activity, i) => (
+              <Card key={i} className="bg-gray-800/40 border-gray-700 hover:border-purple-500/50 transition-all animate-slide-up" style={{ animationDelay: `${i * 50}ms` }}>
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-bold text-purple-400 mb-3">{activity.title}</h3>
+                  <p className="text-gray-400">{activity.desc}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Results Section */}
+      <section id="results" className="py-20 bg-black px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-purple-400 mb-4">Academic Results</h2>
+            <p className="text-gray-400">View and download your semester results</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-8">
+            {[
+              { sem: 1, label: "1st Semester" },
+              { sem: 2, label: "2nd Semester" },
+              { sem: 3, label: "3rd Semester" },
+              { sem: 4, label: "4th Semester" },
+              { sem: 5, label: "5th Semester" },
+            ].map((semester) => (
+              <Button
+                key={semester.sem}
+                onClick={async () => {
+                  try {
+                    const semesterNames: { [key: number]: string } = {
+                      1: '1st',
+                      2: '2nd',
+                      3: '3rd',
+                      4: '4th',
+                      5: '5th',
+                    }
+                    const response = await fetch(`/api/download-result?sem=${semester.sem}`)
+                    if (!response.ok) throw new Error("Failed to download result")
+                    const blob = await response.blob()
+                    const url = window.URL.createObjectURL(blob)
+                    const link = document.createElement("a")
+                    link.href = url
+                    link.download = `VTU_${semesterNames[semester.sem]}_result.pdf`
+                    document.body.appendChild(link)
+                    link.click()
+                    document.body.removeChild(link)
+                    window.URL.revokeObjectURL(url)
+                  } catch (error) {
+                    console.error("[v0] Result download error:", error)
+                  }
+                }}
+                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 px-4 rounded-lg transform hover:scale-105 transition-all duration-300 shadow-lg shadow-purple-500/25"
+              >
+                {semester.label}
+              </Button>
+            ))}
+          </div>
+
+          <Card className="bg-gray-800 border-purple-500/30">
+            <CardContent className="p-8">
+              <h3 className="text-xl font-bold text-purple-300 mb-4">📋 How to Download</h3>
+              <p className="text-gray-300 leading-relaxed">
+                Click on any semester button above to download your VTU exam results in PDF format. All results are officially from Visvesvaraya Technological University and contain your subject-wise marks, grades, and performance details.
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      {/* Resume Section */}
+      <section id="resume" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900/50">
+        <div className="max-w-7xl mx-auto text-center">
+          <h2 className="text-4xl font-bold mb-8 text-cyan-400">Resume</h2>
+          <Button
+            onClick={async () => {
+              try {
+                const response = await fetch("/api/download-resume")
+                if (!response.ok) throw new Error("Failed to download resume")
+                const blob = await response.blob()
+                const url = window.URL.createObjectURL(blob)
+                const link = document.createElement("a")
+                link.href = url
+                link.download = "Arpitha_Jain_Resume.pdf"
+                document.body.appendChild(link)
+                link.click()
+                document.body.removeChild(link)
+                window.URL.revokeObjectURL(url)
+              } catch (error) {
+                console.error("[v0] Resume download error:", error)
+              }
+            }}
+            className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white font-bold px-8 py-3 rounded-lg transform hover:scale-105 transition-all duration-300"
+          >
+            Download Resume
+          </Button>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-4xl font-bold mb-12 text-center text-cyan-400">Get In Touch</h2>
+          <div className="bg-gray-800/40 backdrop-blur border border-gray-700 rounded-2xl p-8 space-y-6">
+            <p className="text-gray-300 text-center mb-6">
+              Have a project in mind? Let&apos;s work together to bring your ideas to life.
+            </p>
+            <p className="text-gray-400 text-center">Or reach out directly:</p>
+            <div className="flex justify-center gap-4">
+              <a href="https://github.com/Arpithajain26" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:text-white transition-colors">
+                <Github size={32} />
+              </a>
+              <a href="https://linkedin.com/in/arpitha-jain-c-b-475438290" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:text-white transition-colors">
+                <Linkedin size={32} />
+              </a>
+              <a href="https://youtube.com/@arpitha._.builds?si=fJt7jNCz-aziNQsU" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:text-white transition-colors">
+                <Youtube size={32} />
+              </a>
+              <a href="https://www.instagram.com/arpitha._.buildz/?hl=en" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:text-white transition-colors">
+                <Instagram size={32} />
+              </a>
+              <a href="mailto:arpithaammujain39@gmail.com" className="text-cyan-400 hover:text-white transition-colors">
+                <Mail size={32} />
+              </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="py-20 px-6 max-w-7xl mx-auto border-t border-gray-800 mb-20">
-        <h2 className="text-3xl font-bold mb-12">Get In Touch</h2>
-        <div className="max-w-2xl">
-          <p className="text-gray-400 text-lg mb-8">
-            I'm always interested in hearing about new projects and opportunities. Feel free to reach out if you'd like to collaborate or just say hi!
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 mb-12">
-            <a
-              href="mailto:arpithaammujain39@gmail.com"
-              className="px-6 py-3 bg-white text-black font-semibold hover:bg-gray-200 transition-colors"
-            >
-              Send Email
-            </a>
-            <a href="tel:8792008746" className="px-6 py-3 border border-gray-600 text-white hover:border-white hover:bg-white/5 transition-all">
-              Call Me
-            </a>
-          </div>
-          <div className="flex gap-6">
-            <a
-              href="https://github.com/Arpithajain26"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white transition-colors"
-            >
-              <Github size={24} />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/arpitha-jain-c-b-475438290"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white transition-colors"
-            >
-              <Linkedin size={24} />
-            </a>
-            <a
-              href="https://youtube.com/@arpitha._.builds?si=fJt7jNCz-aziNQsU"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white transition-colors"
-            >
-              <Youtube size={24} />
-            </a>
-            <a
-              href="https://www.instagram.com/arpitha._.buildz/?hl=en"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white transition-colors"
-            >
-              <Instagram size={24} />
-            </a>
-            <a href="mailto:arpithaammujain39@gmail.com" className="text-gray-400 hover:text-white transition-colors">
-              <Mail size={24} />
-            </a>
-          </div>
-        </div>
-      </section>
-
       {/* Footer */}
-      <footer className="border-t border-gray-800 py-8 px-6 text-center text-gray-500 text-sm">
+      <footer className="border-t border-gray-800 py-8 px-4 sm:px-6 lg:px-8 text-center text-gray-500">
         <p>© 2025 Arpitha Jain. All rights reserved.</p>
       </footer>
     </div>
