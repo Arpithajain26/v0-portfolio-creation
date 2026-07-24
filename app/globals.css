@@ -129,20 +129,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
-  }
-
-  /* Stylish custom cursor */
-  html {
-    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="6" fill="%2306b6d4" opacity="0.8"/><circle cx="16" cy="16" r="10" fill="none" stroke="%2306b6d4" stroke-width="1.5" opacity="0.5"/><path d="M16 4 L16 12 M28 16 L20 16 M16 28 L16 20 M4 16 L12 16" stroke="%23a855f7" stroke-width="1" opacity="0.6"/></svg>') 16 16, auto;
-  }
-
-  a, button, input[type="button"], input[type="submit"], .cursor-pointer {
-    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="7" fill="%2306b6d4" opacity="0.9"/><circle cx="16" cy="16" r="11" fill="none" stroke="%23a855f7" stroke-width="2" opacity="0.7"/><circle cx="16" cy="16" r="5" fill="%23a855f7" opacity="0.3"/></svg>') 16 16, pointer;
-  }
-
-  input[type="text"], input[type="email"], textarea, select {
-    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><line x1="16" y1="4" x2="16" y2="28" stroke="%2306b6d4" stroke-width="2" opacity="0.8"/><circle cx="16" cy="16" r="6" fill="none" stroke="%23a855f7" stroke-width="1.5" opacity="0.6"/></svg>') 16 16, text;
+    @apply bg-black text-white;
   }
 }
 
