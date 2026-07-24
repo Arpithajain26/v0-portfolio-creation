@@ -1,12 +1,18 @@
 "use client"
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Github, Linkedin, Mail, ExternalLink, Youtube, Instagram, Menu, X } from "lucide-react"
+import { useState, useEffect } from "react"
+import { Github, Linkedin, Mail, ExternalLink, Youtube, Instagram, Menu, X, ArrowRight } from "lucide-react"
 import Link from "next/link"
 
 export default function Portfolio() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [scrollY, setScrollY] = useState(0)
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY)
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   const projects = [
     {
@@ -35,24 +41,27 @@ export default function Portfolio() {
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-black/95 backdrop-blur-sm border-b border-gray-800 z-50">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <Link href="#" className="text-2xl font-bold tracking-tight">
+      <nav className="fixed top-0 w-full bg-black/80 backdrop-blur-md border-b border-gray-900 z-50 transition-all duration-300">
+        <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+          <Link href="#home" className="text-xl font-bold tracking-wide bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
             Arpitha Jain
           </Link>
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center space-x-8">
-            <a href="#about" className="text-gray-400 hover:text-white transition-colors text-sm">
+            <a href="#home" className="text-gray-400 hover:text-white transition-colors duration-300 text-sm font-medium">
+              Home
+            </a>
+            <a href="#about" className="text-gray-400 hover:text-white transition-colors duration-300 text-sm font-medium">
               About
             </a>
-            <a href="#projects" className="text-gray-400 hover:text-white transition-colors text-sm">
+            <a href="#projects" className="text-gray-400 hover:text-white transition-colors duration-300 text-sm font-medium">
               Projects
             </a>
-            <a href="#skills" className="text-gray-400 hover:text-white transition-colors text-sm">
+            <a href="#skills" className="text-gray-400 hover:text-white transition-colors duration-300 text-sm font-medium">
               Skills
             </a>
-            <a href="#contact" className="text-gray-400 hover:text-white transition-colors text-sm">
+            <a href="#contact" className="text-gray-400 hover:text-white transition-colors duration-300 text-sm font-medium">
               Contact
             </a>
           </div>
@@ -86,33 +95,56 @@ export default function Portfolio() {
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-6 max-w-7xl mx-auto">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-              Hi, I'm Arpitha.
-            </h1>
-            <p className="text-xl text-gray-400 mb-6 leading-relaxed max-w-lg">
-              4th year CSE student passionate about <span className="text-cyan-400">Python</span>, <span className="text-cyan-400">Web Development</span>, and exploring <span className="text-cyan-400">AI/ML</span> technologies.
-            </p>
-            <p className="text-lg text-gray-500 mb-8">
-              Building digital experiences that are fast, accessible, and meaningful.
-            </p>
-            <div className="flex gap-4">
-              <a href="#projects" className="px-6 py-3 bg-white text-black font-semibold hover:bg-gray-200 transition-colors">
-                View Work
-              </a>
-              <a href="#contact" className="px-6 py-3 border border-gray-600 text-white hover:border-white hover:bg-white/5 transition-all">
-                Get In Touch
-              </a>
+      <section id="home" className="min-h-screen flex items-center pt-20 pb-20 px-6">
+        <div className="max-w-6xl mx-auto w-full">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div className="space-y-8">
+              <div className="space-y-4">
+                <p className="text-cyan-400 font-medium text-lg">Welcome to my portfolio</p>
+                <h1 className="text-6xl md:text-7xl font-bold leading-tight">
+                  Hi, I&apos;m <span className="bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">Arpitha</span>
+                </h1>
+                <p className="text-2xl text-gray-400 font-light">4th Year CSE Student & Developer</p>
+              </div>
+              <p className="text-gray-400 text-lg leading-relaxed max-w-xl">
+                Passionate about building elegant solutions with Python, Web Development, and exploring AI/ML. Currently an <span className="text-white font-medium">AI/ML Intern at Infosys Springboard</span>.
+              </p>
+              <div className="flex gap-4 pt-4">
+                <a href="#projects" className="px-8 py-3 bg-white text-black font-semibold rounded hover:bg-gray-200 transition-all duration-300 flex items-center gap-2 group">
+                  View My Work <ArrowRight className="group-hover:translate-x-1 transition-transform" size={18} />
+                </a>
+                <a href="#contact" className="px-8 py-3 border-2 border-gray-600 text-white rounded hover:border-white hover:bg-white/5 transition-all duration-300">
+                  Get In Touch
+                </a>
+              </div>
+              <div className="flex gap-4 pt-4">
+                <a href="https://github.com/Arpithajain26" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+                  <Github size={24} />
+                </a>
+                <a href="https://linkedin.com/in/arpitha-jain-c-b-475438290" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+                  <Linkedin size={24} />
+                </a>
+                <a href="https://youtube.com/@arpitha._.builds?si=fJt7jNCz-aziNQsU" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+                  <Youtube size={24} />
+                </a>
+                <a href="https://www.instagram.com/arpitha._.buildz/?hl=en" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+                  <Instagram size={24} />
+                </a>
+                <a href="mailto:arpithaammujain39@gmail.com" className="text-gray-400 hover:text-white transition-colors">
+                  <Mail size={24} />
+                </a>
+              </div>
             </div>
-          </div>
-          <div className="hidden md:flex justify-end">
-            <img
-              src="/arpitha-photo.jpg"
-              alt="Arpitha Jain"
-              className="w-80 h-96 object-cover rounded-lg border border-gray-800"
-            />
+            <div className="hidden md:flex justify-center">
+              <div className="relative w-80 h-96">
+                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-2xl blur-2xl"></div>
+                <img
+                  src="/arpitha-photo.jpg"
+                  alt="Arpitha Jain"
+                  className="w-full h-full object-cover rounded-2xl border border-gray-700 relative z-10"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
