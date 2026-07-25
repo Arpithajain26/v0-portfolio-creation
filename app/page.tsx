@@ -9,6 +9,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Github, Linkedin, Mail, ExternalLink, Menu, X, ChevronDown, Youtube, Instagram } from "lucide-react"
 import Link from "next/link"
 import dynamic from "next/dynamic"
+import TechStackLogos from "@/components/tech-stack-logos"
 
 const ThreeDHero = dynamic(() => import("@/components/3d-hero"), { ssr: false })
 
@@ -149,13 +150,22 @@ export default function Portfolio() {
                 </Button>
               </div>
             </div>
-            <div className="hidden md:flex flex-col justify-center items-center gap-6 animate-slide-up delay-100">
-              <ThreeDHero />
-              <img
-                src="/animated-accent.gif"
-                alt="Animated accent"
-                className="w-48 h-48 rounded-xl border-2 border-purple-500/30 shadow-lg shadow-purple-500/20"
-              />
+            <div className="hidden md:flex justify-center items-center animate-slide-up delay-100 relative">
+              <div className="absolute inset-0 rounded-3xl overflow-hidden">
+                <img
+                  src="/animated-accent.gif"
+                  alt="Animated accent"
+                  className="w-full h-full object-cover opacity-40 blur-md"
+                />
+              </div>
+              <div className="relative flex flex-col items-center gap-4">
+                <ThreeDHero />
+                <img
+                  src="/arpitha-photo.jpg"
+                  alt="Arpitha Jain"
+                  className="w-56 h-64 object-cover rounded-2xl border-2 border-purple-500/50 shadow-2xl shadow-purple-500/30 relative z-10"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -222,34 +232,7 @@ export default function Portfolio() {
       </section>
 
       {/* Tech Stack Section */}
-      <section id="techstack" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900/50">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold mb-12 text-center text-cyan-400">Tech Stack</h2>
-          <div className="flex flex-wrap justify-center gap-4 animate-slide-up">
-            {["Java", "Python", "Git", "GitHub", "Node.js", "React", "TypeScript", "MongoDB"].map((tech, index) => (
-              <Badge
-                key={index}
-                className={`
-                  px-6 py-3 text-base font-semibold cursor-pointer 
-                  hover:scale-110 transition-transform duration-300 border
-                  ${
-                    tech === "Java" ? "bg-red-500/10 text-red-400 border-red-500/30" :
-                    tech === "Python" ? "bg-blue-500/10 text-blue-400 border-blue-500/30" :
-                    tech === "Git" ? "bg-orange-500/10 text-orange-400 border-orange-500/30" :
-                    tech === "GitHub" ? "bg-gray-500/10 text-gray-300 border-gray-500/30" :
-                    tech === "Node.js" ? "bg-green-500/10 text-green-400 border-green-500/30" :
-                    tech === "React" ? "bg-cyan-500/10 text-cyan-400 border-cyan-500/30" :
-                    tech === "TypeScript" ? "bg-blue-500/20 text-blue-300 border-blue-500/30" :
-                    "bg-green-500/20 text-green-300 border-green-500/30"
-                  }
-                `}
-              >
-                {tech}
-              </Badge>
-            ))}
-          </div>
-        </div>
-      </section>
+      <TechStackLogos />
 
       {/* Achievements Section */}
       <section id="achievements" className="py-20 px-4 sm:px-6 lg:px-8">
@@ -386,20 +369,23 @@ export default function Portfolio() {
               Have a project in mind? Let&apos;s work together to bring your ideas to life.
             </p>
             <p className="text-gray-400 text-center">Or reach out directly:</p>
-            <div className="flex justify-center gap-4">
-              <a href="https://github.com/Arpithajain26" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:text-white transition-colors">
+            <div className="flex justify-center gap-6 flex-wrap">
+              <a href="https://github.com/Arpithajain26" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:text-white transition-colors hover:scale-110 duration-200" title="GitHub">
                 <Github size={32} />
               </a>
-              <a href="https://linkedin.com/in/arpitha-jain-c-b-475438290" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:text-white transition-colors">
+              <a href="https://linkedin.com/in/arpitha-jain-c-b-475438290" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:text-white transition-colors hover:scale-110 duration-200" title="LinkedIn">
                 <Linkedin size={32} />
               </a>
-              <a href="https://youtube.com/@arpitha._.builds?si=fJt7jNCz-aziNQsU" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:text-white transition-colors">
+              <a href="https://youtube.com/@Arpithabuilds" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:text-white transition-colors hover:scale-110 duration-200" title="YouTube">
                 <Youtube size={32} />
               </a>
-              <a href="https://www.instagram.com/arpitha._.buildz/?hl=en" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:text-white transition-colors">
+              <a href="https://www.instagram.com/arpitha._.buildz/?hl=en" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:text-white transition-colors hover:scale-110 duration-200" title="Instagram">
                 <Instagram size={32} />
               </a>
-              <a href="mailto:arpithaammujain39@gmail.com" className="text-cyan-400 hover:text-white transition-colors">
+              <a href="https://g.dev/arpitha26" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:text-white transition-colors hover:scale-110 duration-200" title="Google Developer" style={{ fontWeight: 'bold', fontSize: '24px' }}>
+                G
+              </a>
+              <a href="mailto:arpithaammujain39@gmail.com" className="text-cyan-400 hover:text-white transition-colors hover:scale-110 duration-200" title="Email">
                 <Mail size={32} />
               </a>
             </div>
