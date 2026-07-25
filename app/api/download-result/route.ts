@@ -5,7 +5,7 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url)
     const semester = searchParams.get('sem')
 
-    if (!semester || !['1', '2', '3', '4', '5'].includes(semester)) {
+    if (!semester || !['1', '2', '3', '4', '5', '6'].includes(semester)) {
       return NextResponse.json(
         { error: 'Invalid semester' },
         { status: 400 }
@@ -19,6 +19,7 @@ export async function GET(request: NextRequest) {
       '3': 'https://blobs.vusercontent.net/blob/VTU_3rd_resilt-urTyUWal9KM7CeJzduEnO4YhzbwlqA.pdf',
       '4': 'https://blobs.vusercontent.net/blob/VTU_4th_result-OCfMYpbyvwkYIgK32yO9pXRi4GSL4X.pdf',
       '5': 'https://blobs.vusercontent.net/blob/VTU_5th_resultdf-BpBN9CiHNHHlxNAd49VKh5xn2kAGk5.pdf',
+      '6': 'https://blobs.vusercontent.net/blob/VTU_6th_result-Vk6oVbyxErIYfbQGDvO9CPPPOcDAE5.pdf',
     }
 
     const semesterNames: { [key: string]: string } = {
@@ -27,6 +28,7 @@ export async function GET(request: NextRequest) {
       '3': '3rd',
       '4': '4th',
       '5': '5th',
+      '6': '6th',
     }
 
     const resultUrl = resultUrls[semester]

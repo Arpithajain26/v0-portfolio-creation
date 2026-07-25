@@ -52,9 +52,9 @@ export default function Portfolio() {
 
   const achievements = [
     {
-      title: "500+ LeetCode Problems",
-      description: "Solved 500+ DSA problems on LeetCode",
-      icon: "🏆",
+      title: "AWS Student Leader",
+      description: "Recognized as AWS Student Leader, leading cloud computing initiatives and mentoring fellow students",
+      icon: "☁️",
     },
     {
       title: "Web Development & Python Courses",
@@ -62,14 +62,14 @@ export default function Portfolio() {
       icon: "🎓",
     },
     {
-      title: "GirlScript Summer of Code Contributor",
-      description: "Contributor at GirlScript Summer of Code 2025",
-      icon: "🌟",
-    },
-    {
       title: "CodeCraft Event Coordinator",
       description: "Coordinated CodeCraft event, organizing workshops and competitions for students",
       icon: "📋",
+    },
+    {
+      title: "6th Semester Distinction",
+      description: "All subjects passed with strong performance including 99/100 in React and 98/100 in NSS",
+      icon: "⭐",
     },
   ]
 
@@ -238,13 +238,14 @@ export default function Portfolio() {
             <p className="text-gray-400">View and download your semester results</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-6 gap-4 mb-8">
             {[
               { sem: 1, label: "1st Semester" },
               { sem: 2, label: "2nd Semester" },
               { sem: 3, label: "3rd Semester" },
               { sem: 4, label: "4th Semester" },
               { sem: 5, label: "5th Semester" },
+              { sem: 6, label: "6th Semester" },
             ].map((semester) => (
               <Button
                 key={semester.sem}
@@ -256,6 +257,7 @@ export default function Portfolio() {
                       3: '3rd',
                       4: '4th',
                       5: '5th',
+                      6: '6th',
                     }
                     const response = await fetch(`/api/download-result?sem=${semester.sem}`)
                     if (!response.ok) throw new Error("Failed to download result")
