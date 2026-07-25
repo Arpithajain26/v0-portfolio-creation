@@ -54,7 +54,8 @@ export default function Portfolio() {
     {
       title: "AWS Student Leader",
       description: "Recognized as AWS Student Leader, leading cloud computing initiatives and mentoring fellow students",
-      icon: "☁️",
+      icon: "aws",
+      isImage: true,
     },
     {
       title: "Web Development & Python Courses",
@@ -65,11 +66,6 @@ export default function Portfolio() {
       title: "CodeCraft Event Coordinator",
       description: "Coordinated CodeCraft event, organizing workshops and competitions for students",
       icon: "📋",
-    },
-    {
-      title: "6th Semester Distinction",
-      description: "All subjects passed with strong performance including 99/100 in React and 98/100 in NSS",
-      icon: "⭐",
     },
   ]
 
@@ -201,8 +197,18 @@ export default function Portfolio() {
           <h2 className="text-4xl font-bold mb-12 text-center text-cyan-400">Achievements</h2>
           <div className="grid md:grid-cols-2 gap-6">
             {achievements.map((achievement, index) => (
-              <div key={index} className="bg-gray-800/40 border border-gray-700 rounded-lg p-6 hover:border-cyan-500/50 transition-all animate-slide-up" style={{ animationDelay: `${index * 50}ms` }}>
-                <div className="text-4xl mb-4">{achievement.icon}</div>
+              <div key={index} className="bg-gradient-to-br from-gray-800/40 to-gray-900/40 backdrop-blur-sm border border-gray-700/50 hover:border-cyan-500/70 rounded-lg p-6 transition-all animate-float hover:shadow-lg hover:shadow-cyan-500/20" style={{ animationDelay: `${index * 200}ms` }}>
+                <div className="text-4xl mb-4 transform hover:scale-110 transition-transform duration-300">
+                  {achievement.isImage ? (
+                    <img 
+                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1200px-Amazon_Web_Services_Logo.svg.png"
+                      alt="AWS"
+                      className="w-12 h-12 object-contain"
+                    />
+                  ) : (
+                    achievement.icon
+                  )}
+                </div>
                 <h3 className="text-xl font-bold text-white mb-2">{achievement.title}</h3>
                 <p className="text-gray-400">{achievement.description}</p>
               </div>
