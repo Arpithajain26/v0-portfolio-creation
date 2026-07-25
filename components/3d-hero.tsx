@@ -1,50 +1,87 @@
 'use client'
 
-import React, { Suspense, useRef, useEffect } from 'react'
+import React, { Suspense, useRef, useEffect, useState } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { OrbitControls, Sphere, Torus } from '@react-three/drei'
+import { OrbitControls, Sphere, Torus, Box } from '@react-three/drei'
 import * as THREE from 'three'
 
 function AnimatedObjects() {
   const sphereRef = useRef<THREE.Mesh>(null)
-  const torusRef = useRef<THREE.Mesh>(null)
+  const torusRef1 = useRef<THREE.Mesh>(null)
+  const torusRef2 = useRef<THREE.Mesh>(null)
+  const boxRef = useRef<THREE.Mesh>(null)
   const groupRef = useRef<THREE.Group>(null)
 
   useFrame(() => {
     if (sphereRef.current) {
-      sphereRef.current.rotation.x += 0.01
-      sphereRef.current.rotation.y += 0.01
+      sphereRef.current.rotation.x += 0.008
+      sphereRef.current.rotation.y += 0.012
     }
-    if (torusRef.current) {
-      torusRef.current.rotation.x -= 0.005
-      torusRef.current.rotation.z -= 0.008
+    if (torusRef1.current) {
+      torusRef1.current.rotation.x -= 0.005
+      torusRef1.current.rotation.z -= 0.008
+    }
+    if (torusRef2.current) {
+      torusRef2.current.rotation.y += 0.004
+      torusRef2.current.rotation.x += 0.002
+    }
+    if (boxRef.current) {
+      boxRef.current.rotation.x += 0.006
+      boxRef.current.rotation.y += 0.009
     }
     if (groupRef.current) {
-      groupRef.current.rotation.y += 0.0005
+      groupRef.current.rotation.z += 0.0002
     }
   })
 
   return (
     <group ref={groupRef}>
+      {/* Main Sphere */}
       <Sphere ref={sphereRef} args={[1, 100, 100]} position={[0, 0, 0]}>
-        <meshStandardMaterial
-          color="#00d4ff"
-          wireframe
-          emissive="#00d4ff"
-          emissiveIntensity={0.5}
+        <meshPhongMaterial
+          color="#06B6D4"
+          wireframe={true}
+          emissive="#06B6D4"
+          emissiveIntensity={0.6}
+          shininess={100}
         />
       </Sphere>
-      <Torus ref={torusRef} args={[2, 0.1, 16, 100]} position={[0, 0, 0]}>
-        <meshStandardMaterial
-          color="#a855f7"
-          wireframe
-          emissive="#a855f7"
-          emissiveIntensity={0.3}
+
+      {/* Primary Torus */}
+      <Torus ref={torusRef1} args={[2.2, 0.12, 16, 100]} position={[0, 0, 0]}>
+        <meshPhongMaterial
+          color="#A855F7"
+          wireframe={true}
+          emissive="#A855F7"
+          emissiveIntensity={0.4}
         />
       </Torus>
-      <pointLight position={[10, 10, 10]} intensity={1} color="#00d4ff" />
-      <pointLight position={[-10, -10, 10]} intensity={0.5} color="#a855f7" />
-      <ambientLight intensity={0.5} />
+
+      {/* Secondary Torus */}
+      <Torus ref={torusRef2} args={[3, 0.1, 16, 100]} position={[0, 0, 0]}>
+        <meshPhongMaterial
+          color="#06B6D4"
+          wireframe={true}
+          emissive="#06B6D4"
+          emissiveIntensity={0.2}
+        />
+      </Torus>
+
+      {/* Accent Box */}
+      <Box ref={boxRef} args={[0.6, 0.6, 0.6]} position={[1.8, 0.8, 0]}>
+        <meshPhongMaterial
+          color="#A855F7"
+          wireframe={true}
+          emissive="#06B6D4"
+          emissiveIntensity={0.3}
+        />
+      </Box>
+
+      {/* Lighting */}
+      <pointLight position={[10, 10, 10]} intensity={1.2} color="#06B6D4" />
+      <pointLight position={[-10, -10, 10]} intensity={0.8} color="#A855F7" />
+      <pointLight position={[0, 10, -10]} intensity={0.6} color="#06B6D4" />
+      <ambientLight intensity={0.4} />
     </group>
   )
 }

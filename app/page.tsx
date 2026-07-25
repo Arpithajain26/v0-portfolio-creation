@@ -9,7 +9,8 @@ import { Textarea } from "@/components/ui/textarea"
 import { Github, Linkedin, Mail, ExternalLink, Menu, X, ChevronDown, Youtube, Instagram } from "lucide-react"
 import Link from "next/link"
 import dynamic from "next/dynamic"
-import TechStackLogos from "@/components/tech-stack-logos"
+import ProjectsCarousel from "@/components/projects-carousel"
+import TechStackReal from "@/components/tech-stack-real"
 
 const ThreeDHero = dynamic(() => import("@/components/3d-hero"), { ssr: false })
 
@@ -186,53 +187,11 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Projects Section */}
-      <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold mb-12 text-center text-cyan-400">Featured Projects</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
-              <div key={index} className="group animate-slide-up" style={{ animationDelay: `${index * 100}ms` }}>
-                <Card className="bg-gray-800/40 border-gray-700 hover:border-purple-500/50 transition-all duration-300 h-full flex flex-col overflow-hidden">
-                  <div className="relative overflow-hidden h-48">
-                    <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-4">
-                      {project.liveUrl && (
-                        <Button size="sm" variant="secondary" asChild className="bg-cyan-500 hover:bg-cyan-600 text-white">
-                          <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                            <ExternalLink size={16} className="mr-2" />
-                            Live Demo
-                          </a>
-                        </Button>
-                      )}
-                      <Button size="sm" variant="secondary" asChild className="bg-purple-500 hover:bg-purple-600 text-white">
-                        <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                          <Github size={16} className="mr-2" />
-                          Code
-                        </a>
-                      </Button>
-                    </div>
-                  </div>
-                  <CardContent className="flex-1 flex flex-col p-6">
-                    <h3 className="text-xl font-bold mb-2 text-white">{project.title}</h3>
-                    <p className="text-gray-400 mb-4 flex-1">{project.description}</p>
-                    <div className="flex flex-wrap gap-2">
-                      {project.technologies.map((tech, i) => (
-                        <Badge key={i} className="bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Projects Carousel Section */}
+      <ProjectsCarousel />
 
       {/* Tech Stack Section */}
-      <TechStackLogos />
+      <TechStackReal />
 
       {/* Achievements Section */}
       <section id="achievements" className="py-20 px-4 sm:px-6 lg:px-8">
