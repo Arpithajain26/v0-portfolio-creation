@@ -8,12 +8,15 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Github, Linkedin, Mail, ExternalLink, Menu, X, ChevronDown, Youtube, Instagram } from "lucide-react"
 import Link from "next/link"
+import dynamic from "next/dynamic"
+
+const ThreeDHero = dynamic(() => import("@/components/3d-hero"), { ssr: false })
 
 export default function Portfolio() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState("home")
 
-  const sections = ["home", "about", "projects", "skills", "achievements", "extracurricular", "results", "resume", "contact"]
+  const sections = ["home", "about", "projects", "techstack", "achievements", "extracurricular", "results", "resume", "contact"]
 
   const projects = [
     {
@@ -79,14 +82,14 @@ export default function Portfolio() {
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center space-x-8">
-            {["home", "about", "projects", "skills", "achievements", "extracurricular", "results", "resume", "contact"].map(
+            {["home", "about", "projects", "techstack", "achievements", "extracurricular", "results", "resume", "contact"].map(
               (section) => (
                 <a
                   key={section}
                   href={`#${section}`}
                   className="text-gray-400 hover:text-cyan-400 transition-colors capitalize text-sm font-medium"
                 >
-                  {section}
+                  {section === "techstack" ? "tech stack" : section}
                 </a>
               )
             )}
@@ -102,7 +105,7 @@ export default function Portfolio() {
         {isMenuOpen && (
           <div className="md:hidden bg-black/98 border-b border-gray-800 p-4">
             <div className="space-y-4">
-              {["home", "about", "projects", "skills", "achievements", "extracurricular", "results", "resume", "contact"].map(
+              {["home", "about", "projects", "techstack", "achievements", "extracurricular", "results", "resume", "contact"].map(
                 (section) => (
                   <a
                     key={section}
@@ -110,7 +113,7 @@ export default function Portfolio() {
                     className="block text-gray-400 hover:text-cyan-400 capitalize text-sm"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    {section}
+                    {section === "techstack" ? "tech stack" : section}
                   </a>
                 )
               )}
@@ -146,15 +149,13 @@ export default function Portfolio() {
                 </Button>
               </div>
             </div>
-            <div className="hidden md:flex justify-center animate-slide-up delay-100">
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-2xl blur-3xl"></div>
-                <img
-                  src="/arpitha-photo.jpg"
-                  alt="Arpitha Jain"
-                  className="relative w-80 h-96 object-cover rounded-2xl border-2 border-purple-500/30 shadow-2xl shadow-purple-500/20"
-                />
-              </div>
+            <div className="hidden md:flex flex-col justify-center items-center gap-6 animate-slide-up delay-100">
+              <ThreeDHero />
+              <img
+                src="/animated-accent.gif"
+                alt="Animated accent"
+                className="w-48 h-48 rounded-xl border-2 border-purple-500/30 shadow-lg shadow-purple-500/20"
+              />
             </div>
           </div>
         </div>
@@ -220,33 +221,32 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Skills Section */}
-      <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900/50">
+      {/* Tech Stack Section */}
+      <section id="techstack" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900/50">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold mb-12 text-center text-cyan-400">Technical Skills</h2>
-          <div className="bg-gray-800/40 backdrop-blur border border-gray-700 rounded-2xl p-8 animate-slide-up">
-            <h3 className="text-2xl font-bold text-purple-400 mb-8">Core Skills</h3>
-            <div className="grid md:grid-cols-2 gap-8">
-              {[
-                { name: "Python", level: 90 },
-                { name: "Java", level: 70 },
-                { name: "Web Development", level: 70 },
-                { name: "AI/ML Exploration", level: 75 },
-              ].map((skill, index) => (
-                <div key={index}>
-                  <div className="flex justify-between mb-2">
-                    <span className="font-medium text-white">{skill.name}</span>
-                    <span className="text-cyan-400">{skill.level}%</span>
-                  </div>
-                  <div className="h-2 bg-gray-700 rounded-full overflow-hidden">
-                    <div
-                      className="h-full bg-gradient-to-r from-cyan-500 to-purple-500 transition-all duration-500"
-                      style={{ width: `${skill.level}%` }}
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
+          <h2 className="text-4xl font-bold mb-12 text-center text-cyan-400">Tech Stack</h2>
+          <div className="flex flex-wrap justify-center gap-4 animate-slide-up">
+            {["Java", "Python", "Git", "GitHub", "Node.js", "React", "TypeScript", "MongoDB"].map((tech, index) => (
+              <Badge
+                key={index}
+                className={`
+                  px-6 py-3 text-base font-semibold cursor-pointer 
+                  hover:scale-110 transition-transform duration-300 border
+                  ${
+                    tech === "Java" ? "bg-red-500/10 text-red-400 border-red-500/30" :
+                    tech === "Python" ? "bg-blue-500/10 text-blue-400 border-blue-500/30" :
+                    tech === "Git" ? "bg-orange-500/10 text-orange-400 border-orange-500/30" :
+                    tech === "GitHub" ? "bg-gray-500/10 text-gray-300 border-gray-500/30" :
+                    tech === "Node.js" ? "bg-green-500/10 text-green-400 border-green-500/30" :
+                    tech === "React" ? "bg-cyan-500/10 text-cyan-400 border-cyan-500/30" :
+                    tech === "TypeScript" ? "bg-blue-500/20 text-blue-300 border-blue-500/30" :
+                    "bg-green-500/20 text-green-300 border-green-500/30"
+                  }
+                `}
+              >
+                {tech}
+              </Badge>
+            ))}
           </div>
         </div>
       </section>
