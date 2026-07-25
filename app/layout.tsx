@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { GeistSans } from "geist/font/sans"
 import { GeistMono } from "geist/font/mono"
 import { Playfair_Display } from "next/font/google"
+import PortfolioSequence from "@/components/portfolio-sequence"
 import "./globals.css"
 
 const playfair = Playfair_Display({
@@ -12,8 +13,8 @@ const playfair = Playfair_Display({
 })
 
 export const metadata: Metadata = {
-  title: "Portfolio - Your Name",
-  description: "Professional portfolio showcasing my work and expertise",
+  title: "Arpitha Jain - Portfolio",
+  description: "Professional portfolio showcasing my work, projects, and expertise in web development and AI/ML",
   generator: "v0.app",
 }
 
@@ -24,7 +25,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable} ${playfair.variable}`}>{children}</body>
+      <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable} ${playfair.variable}`}>
+        <PortfolioSequence>{children}</PortfolioSequence>
+      </body>
     </html>
   )
 }
