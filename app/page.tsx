@@ -131,8 +131,8 @@ export default function Portfolio() {
             <div className="space-y-8 animate-slide-up">
               <div>
                 <p className="text-cyan-400 font-medium mb-2">Welcome to my portfolio</p>
-                <h1 className="text-5xl md:text-7xl font-bold mb-4 leading-tight">
-                  <span className="text-cyan-400">&lt;</span> Arpitha Jain <span className="text-purple-500">/&gt;</span>
+                <h1 className="text-5xl md:text-7xl font-bold mb-4 leading-tight animate-float">
+                  <span className="text-cyan-400">&lt;</span> <span className="text-transparent bg-gradient-to-r from-cyan-400 via-purple-400 to-cyan-400 bg-clip-text">Arpitha Jain C B</span> <span className="text-purple-500">/&gt;</span>
                 </h1>
               </div>
               <div>
@@ -151,7 +151,7 @@ export default function Portfolio() {
                 </Button>
               </div>
             </div>
-            <div className="hidden md:flex justify-center items-center animate-slide-up delay-100 relative">
+            <div className="hidden md:flex justify-center items-center animate-slide-up delay-100 relative perspective">
               <div className="absolute inset-0 rounded-3xl overflow-hidden">
                 <img
                   src="/animated-accent.gif"
@@ -160,12 +160,14 @@ export default function Portfolio() {
                 />
               </div>
               <div className="relative flex flex-col items-center gap-4">
-                <ThreeDHero />
-                <img
-                  src="/arpitha-photo.jpg"
-                  alt="Arpitha Jain"
-                  className="w-56 h-64 object-cover rounded-2xl border-2 border-purple-500/50 shadow-2xl shadow-purple-500/30 relative z-10"
-                />
+                {/* <ThreeDHero /> */}
+                <div className="animate-float">
+                  <img
+                    src="/arpitha-photo.jpg"
+                    alt="Arpitha Jain"
+                    className="w-72 h-96 object-cover rounded-3xl border-4 border-purple-500/70 shadow-2xl shadow-purple-500/50 relative z-10 hover:shadow-cyan-500/50 hover:border-cyan-500/70 transition-all duration-300"
+                  />
+                </div>
               </div>
             </div>
           </div>

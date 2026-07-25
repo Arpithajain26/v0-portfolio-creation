@@ -21,7 +21,7 @@ export default function LoadingScreen() {
         {/* Name Text */}
         <div className="text-center">
           <h1 className="text-4xl font-bold bg-gradient-to-r from-cyan-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent animate-pulse">
-            Arpitha Jain
+            Arpitha Jain C B
           </h1>
           <p className="text-cyan-400 text-sm mt-4 animate-bounce">Loading Portfolio...</p>
         </div>
